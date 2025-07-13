@@ -1,10 +1,16 @@
 import { RegistrationPage } from "../pages/RegistrationPage";
+import { UserNavigationSection } from "../pages/PageElements/UserNavigationSection";
 import { User } from "../valueObjects/User";
-import { Store } from "../constants/Store";
-import { test } from "@playwright/test";
+import { Store } from "../tests/registrationFlowTests/constants/Store";
+import { Errors } from "../tests/registrationFlowTests/constants/Errors";
+import { ErrorField } from "../tests/registrationFlowTests/constants/ErrorFields";
+import { test, expect } from "@playwright/test";
 
 export class RegistrationSteps {
-  constructor(private readonly registrationPage: RegistrationPage) {}
+  constructor(
+    private readonly registrationPage: RegistrationPage,
+    private userSection: UserNavigationSection
+  ) {}
 
   async openPage(): Promise<RegistrationSteps> {
     await test.step("Open registration page", async () => {
@@ -13,9 +19,12 @@ export class RegistrationSteps {
     return this;
   }
 
-  async fillFields(user: User): Promise<RegistrationSteps> {
+  async fillFields(
+    user: User,
+    wrongPassword?: string
+  ): Promise<RegistrationSteps> {
     await test.step("Fill all required fields", async () => {
-      await this.registrationPage.fillAllRequiredFields(user);
+      await this.registrationPage.fillAllRequiredFields(user, wrongPassword);
     });
     return this;
   }
@@ -41,10 +50,24 @@ export class RegistrationSteps {
     return this;
   }
 
-  async assertSuccess(): Promise<RegistrationSteps> {
-    await test.step("Assert registration is successful", async () => {
-      await this.registrationPage.isRegistrationSuccessful();
+  async assertSuccess(): Promise<boolean> {
+    return await test.step("Assert registration is successful", async () => {
+      return (
+        (await this.registrationPage.isRegistrationSuccessful()) &&
+        (await this.userSection.isAccountAvailable())
+      );
     });
-    return this;
+  }
+
+  async assertButtonSubmitDisabled(): Promise<boolean> {
+    return await test.step("Assert that button Submit Registration is disabled", async () => {
+      return await this.registrationPage.isSubmitButtonDisabled();
+    });
+  }
+
+  async assertErrorText(errorField: ErrorField, errorText: Errors) {
+    expect(await this.registrationPage.getErrorText(errorField)).toEqual(
+      errorText
+    );
   }
 }
