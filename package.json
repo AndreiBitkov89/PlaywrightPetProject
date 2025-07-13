@@ -1,0 +1,19 @@
+{
+  "name": "aeo-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.13",
+    "allure-playwright": "^3.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "typescript": "^5.8.3"
+  }
+}
