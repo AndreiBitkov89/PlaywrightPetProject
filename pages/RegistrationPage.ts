@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { RegistrationElements as el } from "../locatorsStorage/RegistrationElements";
-import { User } from "../valueObjects/User";
+import { User } from "../valueObjects/NewUser";
 import { BasePage } from "./BasePage";
 import { ErrorField } from "../tests/registrationFlowTests/constants/ErrorFields";
 import { InputField } from "../elementsObjects/InputField";

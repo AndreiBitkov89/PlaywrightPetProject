@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { RegistrationPage } from "../../pages/RegistrationPage";
-import { User } from "../../valueObjects/User";
+import { User } from "../../valueObjects/NewUser";
 import { Store } from "./constants/Store";
 import { Errors } from "./constants/Errors";
 import { ErrorField } from "./constants/ErrorFields";

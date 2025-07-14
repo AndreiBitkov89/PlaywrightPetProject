@@ -1,6 +1,6 @@
 import { RegistrationPage } from "../pages/RegistrationPage";
 import { UserNavigationSection } from "../pages/PageElements/UserNavigationSection";
-import { User } from "../valueObjects/User";
+import { User } from "../valueObjects/NewUser";
 import { Store } from "../tests/registrationFlowTests/constants/Store";
 import { Errors } from "../tests/registrationFlowTests/constants/Errors";
 import { ErrorField } from "../tests/registrationFlowTests/constants/ErrorFields";
