@@ -1,8 +1,6 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { LoginPageElements as el } from "../locatorsStorage/LoginPageElements";
-import { User } from "../valueObjects/NewUser";
 import { BasePage } from "./BasePage";
-import { ErrorField } from "../tests/registrationFlowTests/constants/ErrorFields";
 import { InputField } from "../elementsObjects/InputField";
 
 export class LoginPage extends BasePage {
