@@ -1,7 +1,8 @@
 import { LoginPage } from "../pages/LoginPage";
 import { UserNavigationSection } from "../pages/PageElements/UserNavigationSection";
-import { User } from "../valueObjects/NewUser";
-import { test } from "@playwright/test";
+import { test, expect } from "@playwright/test";
+import { ErrorField } from "../tests/loginFlowTests.ts/constants/ErrorFields";
+import { Errors } from "../tests/loginFlowTests.ts/constants/Errors";
 
 export class LoginSteps {
   constructor(
@@ -33,5 +34,10 @@ export class LoginSteps {
         (await this.userSection.isAccountAvailable())
       );
     });
+  }
+
+
+  async assertErrorText(errorField: ErrorField, errorText: Errors) {
+    expect(await this.loginPage.getErrorText(errorField)).toEqual(errorText);
   }
 }

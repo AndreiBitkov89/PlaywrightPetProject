@@ -3,6 +3,8 @@ import { LoginPage } from "../../pages/LoginPage";
 import { User } from "../../valueObjects/NewUser";
 import { LoginSteps } from "../../steps/LoginSteps";
 import { UserNavigationSection } from "../../pages/PageElements/UserNavigationSection";
+import { Errors } from "./constants/Errors";
+import { ErrorField } from "./constants/ErrorFields";
 
 test.describe("Login flow testing", () => {
   let user: User;
@@ -24,5 +26,15 @@ test.describe("Login flow testing", () => {
     );
 
     expect(await loginSteps.assertSuccess()).toBeTruthy();
+  });
+
+  test("Directly open login page, enter incorrect credentials and get error", async () => {
+    user = User.generateRandom();
+    await loginSteps.openPage();
+    await loginSteps.fillFieldsAndSubmit(user.email, user.password);
+
+    expect(
+      await loginSteps.assertErrorText(ErrorField.General, Errors.LOGIN_ERROR)
+    );
   });
 });
