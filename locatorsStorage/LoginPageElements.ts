@@ -4,6 +4,7 @@ export const LoginPageElements = {
   submitLogin: "button.Form__submitButton",
   createAccountLink: "[data-testid='create-account-link']",
   errorGeneralMessage: ".InfoMessage__title",
-  errorLogin: "[idata-testid='input-message-phoneOrEmail']",
-  errorPassword: "[idata-testid='input-message-password']",
+  errorLogin: "[data-testid='input-message-phoneOrEmail']",
+  errorPassword: "[data-testid='input-message-password']",
+  forgotPassLink: "[data-testid='forgot-password-link']",
 };

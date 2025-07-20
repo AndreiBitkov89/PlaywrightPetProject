@@ -1,23 +1,22 @@
 import { test, expect } from "@playwright/test";
 import { RegistrationPage } from "../../pages/RegistrationPage";
 import { User } from "../../valueObjects/NewUser";
-import { Store } from "./constants/Store";
 import { Errors } from "./constants/Errors";
 import { ErrorField } from "./constants/ErrorFields";
 import { RegistrationSteps } from "../../steps/RegistrationSteps";
-import { UserNavigationSection } from "../../pages/PageElements/UserNavigationSection";
+import { AppContext } from "../../steps/AppContext";
 import { faker } from "@faker-js/faker";
 
 test.describe("Registration flow", () => {
   let user: User;
   let registrationPage: RegistrationPage;
-  let userSection: UserNavigationSection;
   let steps: RegistrationSteps;
+  let appContext: AppContext;
 
   test.beforeEach(async ({ page }) => {
-    registrationPage = new RegistrationPage(page);
-    userSection = new UserNavigationSection(page);
-    steps = new RegistrationSteps(registrationPage, userSection);
+    appContext = new AppContext(page);
+    registrationPage = new RegistrationPage(page)
+    steps = new RegistrationSteps(appContext);
   });
 
   test("Directly open registration page and create new account", async () => {
@@ -100,6 +99,8 @@ test.describe("Registration flow", () => {
     await steps.fillFields(user, faker.internet.password());
     await steps.checkTerms();
     await steps.submit();
-    expect(await registrationPage.isValidationFailed(ErrorField.ConfirmPassword)).toBeTruthy();
+    expect(
+      await registrationPage.isValidationFailed(ErrorField.ConfirmPassword)
+    ).toBeTruthy();
   });
 });

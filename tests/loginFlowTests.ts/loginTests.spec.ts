@@ -1,21 +1,18 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../../pages/LoginPage";
 import { User } from "../../valueObjects/NewUser";
+import { AppContext } from "../../steps/AppContext";
 import { LoginSteps } from "../../steps/LoginSteps";
-import { UserNavigationSection } from "../../pages/PageElements/UserNavigationSection";
 import { Errors } from "./constants/Errors";
 import { ErrorField } from "./constants/ErrorFields";
 
 test.describe("Login flow testing", () => {
   let user: User;
-  let loginPage: LoginPage;
-  let userSection: UserNavigationSection;
   let loginSteps: LoginSteps;
+  let appContext: AppContext
 
   test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
-    userSection = new UserNavigationSection(page);
-    loginSteps = new LoginSteps(loginPage, userSection);
+    appContext = new AppContext(page);
+    loginSteps = new LoginSteps(appContext);
   });
 
   test("Directly open login page and login user", async () => {
@@ -36,5 +33,36 @@ test.describe("Login flow testing", () => {
     expect(
       await loginSteps.assertErrorText(ErrorField.General, Errors.LOGIN_ERROR)
     );
+  });
+
+  test("Directly open login page, enter incorrect email format and get error", async () => {
+    user = User.generateUserWithInvalidEmail();
+    await loginSteps.openPage();
+    await loginSteps.fillFieldsAndSubmit(user.email, user.password);
+
+    expect(
+      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_INVALID)
+    );
+  });
+
+  test("Directly open login page, don't enter credentials and get errors", async () => {
+    await loginSteps.openPage();
+    await loginSteps.fillFieldsAndSubmit(null, null);
+
+    expect(
+      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_REQUIRED)
+    );
+
+    expect(
+      await loginSteps.assertErrorText(
+        ErrorField.Password,
+        Errors.PASSWORD_REQUIRED
+      )
+    );
+  });
+
+  test("Check availability of forgot password button", async () => {
+    await loginSteps.openPage();
+    await loginSteps.goToForgotPassAndCheckRedirection();
   });
 });

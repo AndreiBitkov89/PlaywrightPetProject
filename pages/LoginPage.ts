@@ -47,8 +47,6 @@ export class LoginPage extends BasePage {
     }
   }
 
-
-
   async getErrorText(field: ErrorField): Promise<string | null> {
     const errorLocators: Record<ErrorField, string> = {
       [ErrorField.Email]: el.errorLogin,
@@ -59,5 +57,10 @@ export class LoginPage extends BasePage {
     const selector = errorLocators[field];
     await this.page.waitForSelector(selector);
     return await this.page.locator(selector).textContent();
+  }
+
+  async goToForgotPass(){
+    await this.page.locator(el.forgotPassLink).click();
+    await this.page.waitForURL('/de/en/account/forgot-password')
   }
 }
