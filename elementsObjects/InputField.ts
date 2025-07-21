@@ -35,6 +35,11 @@ export class InputField {
   }
 
   async isVisible(): Promise<boolean> {
-    return this.page.locator(this.inputSelector).isVisible({ timeout: 3000 });
+    try {
+      await this.page.waitForSelector(this.inputSelector, { timeout: 3000 });
+      return await this.page.locator(this.inputSelector).isVisible();
+    } catch (e) {
+      return false;
+    }
   }
 }

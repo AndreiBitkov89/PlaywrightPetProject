@@ -4,10 +4,10 @@ import { UserNavigationSectionElements as el } from "../../locatorsStorage/UserN
 export class UserNavigationSection {
   constructor(private page: Page) {}
 
-  public isAccountAvailable(): Promise<boolean> {
-    return this.page.locator(el.accountLink).isVisible();
+  public async isAccountAvailable(): Promise<boolean> {
+    return await this.page.locator(el.accountLink).isVisible();
   }
-  public isSignInAvailable(): Promise<boolean> {
-    return this.page.locator(el.signInLink).isVisible();
+  public async isSignInAvailable(): Promise<boolean> {
+    return await this.page.locator(el.signInLink).isVisible();
   }
 }
