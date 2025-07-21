@@ -25,6 +25,13 @@ export class RegistrationPage extends BasePage {
     await this.page.goto("/de/en/account/create");
   }
 
+  async isLoaded(): Promise<boolean> {
+    return (
+      (await this.nameField.isVisible()) &&
+      (await this.page.locator(el.submitButton).isVisible({ timeout: 3000 }))
+    );
+  }
+
   async fillName(name: string | null): Promise<void> {
     if (typeof name === "string") {
       await this.nameField.fill(name);
@@ -55,7 +62,10 @@ export class RegistrationPage extends BasePage {
     }
   }
 
-  async fillAllRequiredFields(user: User, wrongPassword?: string): Promise<RegistrationPage> {
+  async fillAllRequiredFields(
+    user: User,
+    wrongPassword?: string
+  ): Promise<RegistrationPage> {
     await this.fillName(user.firstName);
     await this.fillSurname(user.lastName);
     await this.fillEmail(user.email);
@@ -85,7 +95,9 @@ export class RegistrationPage extends BasePage {
 
   async isRegistrationSuccessful(): Promise<boolean> {
     try {
-      await this.page.locator(el.name).waitFor({ state: "hidden", timeout: 5000 });
+      await this.page
+        .locator(el.name)
+        .waitFor({ state: "hidden", timeout: 5000 });
       return true;
     } catch {
       return false;

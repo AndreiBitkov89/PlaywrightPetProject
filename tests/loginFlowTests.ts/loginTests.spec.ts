@@ -65,4 +65,9 @@ test.describe("Login flow testing", () => {
     await loginSteps.openPage();
     await loginSteps.goToForgotPassAndCheckRedirection();
   });
+
+   test("Check the redirection to registration from login page", async () => {
+    await loginSteps.openPage();
+    await loginSteps.goToRegistrationFromSignIn();
+  });
 });

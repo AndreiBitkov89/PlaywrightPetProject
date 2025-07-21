@@ -33,4 +33,8 @@ export class InputField {
     const validIcon = wrapper.locator(".InputValidState__valid");
     return await validIcon.isVisible();
   }
+
+  async isVisible(): Promise<boolean> {
+    return this.page.locator(this.inputSelector).isVisible({ timeout: 3000 });
+  }
 }
