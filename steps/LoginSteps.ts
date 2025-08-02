@@ -1,7 +1,7 @@
 
 import { test, expect } from "@playwright/test";
-import { ErrorField } from "../tests/loginFlowTests.ts/constants/ErrorFields";
-import { Errors } from "../tests/loginFlowTests.ts/constants/Errors";
+import { ErrorField } from "../tests/loginFlowTests/constants/ErrorFields";
+import { Errors } from "../tests/loginFlowTests/constants/Errors";
 import { AppContext } from "./AppContext"
 
 export class LoginSteps {
