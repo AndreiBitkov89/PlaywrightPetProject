@@ -10,4 +10,9 @@ export class UserNavigationSection {
   public async isSignInAvailable(): Promise<boolean> {
     return await this.page.locator(el.signInLink).isVisible();
   }
+
+  public async goToFavorites(): Promise<this> {
+    await this.page.locator(el.favorites).click();
+    return this;
+  }
 }

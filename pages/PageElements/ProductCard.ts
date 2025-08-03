@@ -2,7 +2,6 @@ import { Page, Locator, expect } from "@playwright/test";
 import { ProductCardElements as el } from "../../locatorsStorage/ProductCardElements";
 
 export class ProductCard {
-
   constructor(private readonly root: Locator) {}
 
   get title(): Locator {
@@ -23,22 +22,10 @@ export class ProductCard {
   }
 
   async assertAllElementsVisible(): Promise<void> {
-    await expect(
-      this.root.locator(el.currentPrice),
-      "currentPrice not found"
-    ).toBeVisible();
-    await expect(
-      this.root.locator(el.image),
-      "Image not found"
-    ).toBeVisible();
-    await expect(
-      this.root.locator(el.title),
-      "Title not found"
-    ).toBeVisible();
-    await expect(
-      this.root.locator(el.favoriteButton),
-      "FavoriteButton not found"
-    ).toBeVisible();
+    await expect(this.root.locator(el.actualPrice)).toBeVisible();
+    await expect(this.root.locator(el.image)).toBeVisible();
+    await expect(this.root.locator(el.title)).toBeVisible();
+    await expect(this.root.locator(el.favoriteButton)).toBeVisible();
   }
   async scrollIntoView(): Promise<void> {
     await this.root.scrollIntoViewIfNeeded();

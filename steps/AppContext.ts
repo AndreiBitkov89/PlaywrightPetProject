@@ -5,7 +5,6 @@ import { LoginPage } from "../pages/LoginPage";
 import { HomePage } from "../pages/HomePage";
 import { ForgotPasswordPage } from "../pages/ForgotPasswordPage";
 import { PageWithItems } from "../pages/PageWithItems";
-import { ProductCard } from "../pages/PageElements/ProductCard";
 
 export class AppContext {
   public loginPage: LoginPage;

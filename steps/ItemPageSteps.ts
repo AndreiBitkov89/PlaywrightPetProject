@@ -29,6 +29,7 @@ export class ItemPageSteps {
     await test.step("Assert structure and quantity of item cards", async () => {
       const realCards =
         await this.ctx.pageWithItems.returnAllRealCardLocators();
+      console.log(realCards);
 
       for (let i = 0; i < realCards.length; i++) {
         const card = new ProductCard(realCards[i]);

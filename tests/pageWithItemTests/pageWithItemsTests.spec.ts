@@ -18,8 +18,16 @@ test.describe("Page with items flow", () => {
       CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
   });
-  test("Check number and structure of items", async () => {
+  test("Check number and structure of items in American Eagle", async () => {
     await steps.openPage(ItemCategories.FlareBootcutJeans);
+    await steps.assertQuantityAndStructureOfItems();
+  });
+
+  test("Check number and structure of items in Aerie", async () => {
+    await steps.openPage(ItemCategories.Bra);
+    await steps.checkPageIsLoaded(
+      CATEGORY_DATA.Bra.expectedTitleContains
+    );
     await steps.assertQuantityAndStructureOfItems();
   });
 });

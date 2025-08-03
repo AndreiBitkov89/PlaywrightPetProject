@@ -8,12 +8,12 @@ export class PageWithItems extends BasePage {
   }
 
   async goto(path: string): Promise<void> {
-    await this.page.goto(`/de/en/american-eagle/${path}`);
+    await this.page.goto(`/de/en/${path}`);
   }
 
   async isLoaded(title: string): Promise<boolean> {
     await this.closePopupsIfExists();
-
+    await this.page.locator(el.title).scrollIntoViewIfNeeded();
     const isItemsVisible = await this.page.locator(el.items).isVisible();
     const isResultVisible = await this.page.locator(el.result).isVisible();
     const isSidebarVisible = await this.page.locator(el.sidebar).isVisible();
@@ -48,7 +48,6 @@ export class PageWithItems extends BasePage {
         result.push(el);
       }
     }
-
     return result;
   }
 
