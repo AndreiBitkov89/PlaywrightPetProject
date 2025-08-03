@@ -1,7 +1,8 @@
 import { Page, expect } from "@playwright/test";
 
 export class BasePage {
-  constructor(protected page: Page) {}
+  constructor( public page: Page) {}
+
 
   async closePopupsIfExists(): Promise<void> {
     const subscribeDialogClose = this.page.locator(

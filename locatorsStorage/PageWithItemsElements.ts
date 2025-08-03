@@ -3,4 +3,5 @@ export const PageWithItemsElements = {
   sidebar: "[data-testid='sidebar']",
   result: "[data-testid='resultsTablet']",
   items: "[data-testid='listingProductGridTablet']",
+  itemCounter: ".ResultsSummary__resultsSummary",
 };
