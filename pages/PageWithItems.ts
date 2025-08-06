@@ -52,21 +52,24 @@ export class PageWithItems extends BasePage {
   }
 
   async scrollToLoadAllCards(): Promise<void> {
-    const scrollStep = 500;
-    const delay = 300;
+    const delay = 500;
+    const maxScrolls = 50;
+    let prevCount = 0;
 
-    let prevHeight = 0;
-    let currentHeight = await this.page.evaluate(
-      () => document.body.scrollHeight
-    );
+    for (let i = 0; i < maxScrolls; i++) {
+      const cards = this.page.locator("div[data-testid^='product-card-']");
+      const currentCount = await cards.count();
 
-    while (currentHeight > prevHeight) {
-      await this.page.mouse.wheel(0, scrollStep);
+      if (currentCount === prevCount) {
+        break;
+      }
+
+      await this.page.evaluate(() => {
+        window.scrollBy(0, window.innerHeight);
+      });
+
       await this.page.waitForTimeout(delay);
-      prevHeight = currentHeight;
-      currentHeight = await this.page.evaluate(
-        () => document.body.scrollHeight
-      );
+      prevCount = currentCount;
     }
   }
 }
