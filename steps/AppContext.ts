@@ -5,6 +5,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { HomePage } from "../pages/HomePage";
 import { ForgotPasswordPage } from "../pages/ForgotPasswordPage";
 import { PageWithItems } from "../pages/PageWithItems";
+import { MyFavorites } from "../pages/MyFavoritesPage";
 
 export class AppContext {
   public loginPage: LoginPage;
@@ -13,6 +14,7 @@ export class AppContext {
   public userNavigationSection: UserNavigationSection;
   public registrationPage: RegistrationPage;
   public pageWithItems: PageWithItems;
+  public myFavorites: MyFavorites;
 
   constructor(page: Page) {
     this.loginPage = new LoginPage(page);
@@ -21,6 +23,6 @@ export class AppContext {
     this.userNavigationSection = new UserNavigationSection(page);
     this.registrationPage = new RegistrationPage(page);
     this.pageWithItems = new PageWithItems(page);
+    this.myFavorites = new MyFavorites(page);
   }
-
 }

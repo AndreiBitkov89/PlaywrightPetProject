@@ -1,6 +1,7 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { PageWithItemsElements as el } from "../locatorsStorage/PageWithItemsElements";
 import { BasePage } from "./BasePage";
+import { ProductCard } from "./PageElements/ProductCard";
 
 export class PageWithItems extends BasePage {
   constructor(page: Page) {
@@ -71,5 +72,11 @@ export class PageWithItems extends BasePage {
       await this.page.waitForTimeout(delay);
       prevCount = currentCount;
     }
+  }
+
+  async findCardFromIndex(index: number): Promise<ProductCard> {
+    const testId = `product-card-${index}`;
+    const root = this.page.locator(`[data-testid="${testId}"]`);
+    return new ProductCard(root);
   }
 }

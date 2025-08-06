@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { LoginPageElements as el } from "../locatorsStorage/LoginPageElements";
+import { MyFavoritesElements as el } from "../locatorsStorage/MyFavoritesElements";
 import { BasePage } from "./BasePage";
 
 export class MyFavorites extends BasePage {
@@ -9,5 +9,18 @@ export class MyFavorites extends BasePage {
 
   async goto(): Promise<void> {
     await this.page.goto("/de/en/my-favorites");
+  }
+
+  async isLoaded(): Promise<boolean> {
+    await this.page.waitForSelector(el.title);
+    return await this.page.locator(el.title).isVisible();
+  }
+
+  async isItemDisplayed(itemTitle: string): Promise<boolean> {
+    const xpath = `xpath=//div//*[contains(text(), '${itemTitle}')]`;
+
+    await this.page.locator(xpath).waitFor({ state: "visible" });
+
+    return await this.page.locator(xpath).isVisible();
   }
 }

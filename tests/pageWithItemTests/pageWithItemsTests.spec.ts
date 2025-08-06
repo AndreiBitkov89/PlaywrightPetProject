@@ -25,9 +25,13 @@ test.describe("Page with items flow", () => {
 
   test("Check number and structure of items in Aerie", async () => {
     await steps.openPage(ItemCategories.Bra);
-    await steps.checkPageIsLoaded(
-      CATEGORY_DATA.Bra.expectedTitleContains
-    );
+    await steps.checkPageIsLoaded(CATEGORY_DATA.Bra.expectedTitleContains);
     await steps.assertQuantityAndStructureOfItems();
+  });
+
+  test("Add item in favorites and check it", async () => {
+    await steps.openPage(ItemCategories.FlareBootcutJeans);
+    await steps.checkPageIsLoaded(CATEGORY_DATA.Bra.expectedTitleContains);
+    await steps.addItemInFavorites(2);
   });
 });

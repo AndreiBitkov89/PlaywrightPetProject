@@ -9,16 +9,21 @@ export class ProductCard {
   }
 
   async isVisible(): Promise<boolean> {
-    await this.root.scrollIntoViewIfNeeded();
+    // await this.root.scrollIntoViewIfNeeded();
     return await this.root.isVisible();
   }
 
   async getTitleText(): Promise<string | null> {
+    await this.isVisible();
     return (await this.title.textContent())?.trim() ?? null;
   }
 
   async clickImage(): Promise<void> {
     await this.root.locator(el.image).click();
+  }
+
+  async clickFavorites(): Promise<void> {
+    await this.root.locator(el.favoriteButton).click();
   }
 
   async assertAllElementsVisible(): Promise<void> {

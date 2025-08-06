@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { AppContext } from "./AppContext";
 import {
   ItemCategories,
@@ -29,12 +29,25 @@ export class ItemPageSteps {
     await test.step("Assert structure and quantity of item cards", async () => {
       const realCards =
         await this.ctx.pageWithItems.returnAllRealCardLocators();
-      console.log(realCards);
-
       for (let i = 0; i < realCards.length; i++) {
         const card = new ProductCard(realCards[i]);
         await card.assertAllElementsVisible();
       }
+    });
+  }
+
+  async addItemInFavorites(index: number) {
+    await test.step("Assert adding the item in My Favorites List", async () => {
+      const card = await this.ctx.pageWithItems.findCardFromIndex(index);
+      const title = await card.getTitleText();
+      if (typeof title !== "string") {
+        throw new Error("Expected 'title' to be a string");
+      }
+      await card.clickFavorites();
+      await this.ctx.userNavigationSection.goToFavorites();
+
+      await this.ctx.myFavorites.isLoaded();
+      await this.ctx.myFavorites.isItemDisplayed(title);
     });
   }
 }
