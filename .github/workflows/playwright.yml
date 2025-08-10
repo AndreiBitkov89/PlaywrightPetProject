@@ -1,30 +1,91 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     env:
       LOGIN: ${{ secrets.LOGIN }}
       PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: "lts/*"
+
       - name: Install dependencies
         run: npm ci
-      - name: Install Playwright Browsers
+
+      - name: Install Playwright browsers
         run: npx playwright install --with-deps
+
       - name: Run Playwright tests
         run: npx playwright test
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+        continue-on-error: true
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          npx allure generate allure-results --clean -o allure-report || echo "No allure-results found"
+
+      - name: Build Pages content
+        if: always()
+        run: |
+          mkdir -p public/playwright public/allure
+          # Playwright HTML
+          if [ -d "playwright-report" ]; then
+            cp -r playwright-report/* public/playwright/
+          fi
+          # Allure HTML
+          if [ -d "allure-report" ]; then
+            cp -r allure-report/* public/allure/
+          fi
+          cat > public/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+            <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>Test Reports</title>
+              <style>body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;padding:24px}a{font-size:18px}</style>
+            </head>
+            <body>
+              <h1>Test Reports</h1>
+              <ul>
+                <li><a href="./playwright/index.html">Playwright HTML Report</a></li>
+                <li><a href="./allure/index.html">Allure Report</a></li>
+              </ul>
+            </body>
+          </html>
+          HTML
+
+      - name: Upload Pages artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          path: public
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
