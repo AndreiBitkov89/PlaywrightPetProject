@@ -4,4 +4,7 @@ export const PageWithItemsElements = {
   result: "[data-testid='resultsTablet']",
   items: "[data-testid='listingProductGridTablet']",
   itemCounter: ".ResultsSummary__resultsSummary",
+  sortBy: "button[aria-label='Sort By']",
+  cards: "div[data-testid^='product-card-']",
+  new: 'img[src*="EN_86fd4272de.png"]'
 };

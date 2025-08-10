@@ -5,6 +5,7 @@ import {
   CATEGORY_DATA,
 } from "../tests/pageWithItemTests/constants/ItemCategories";
 import { ProductCard } from "../pages/PageElements/ProductCard";
+import { DropdownItems } from "../pages/PageElements/constants/DropdownItems";
 
 export class ItemPageSteps {
   constructor(private ctx: AppContext) {}
@@ -48,6 +49,14 @@ export class ItemPageSteps {
 
       await this.ctx.myFavorites.isLoaded();
       await this.ctx.myFavorites.isItemDisplayed(title);
+    });
+  }
+
+  async sortingItems(sortingType: DropdownItems) {
+    await test.step("Assert sorting items in the page", async () => {
+      if (sortingType === DropdownItems.New) {
+        await this.ctx.pageWithItems.applyFilterByNew();
+      }
     });
   }
 }

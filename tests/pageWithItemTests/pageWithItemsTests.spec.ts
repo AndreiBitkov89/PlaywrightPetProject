@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { AppContext } from "../../steps/AppContext";
 import { ItemCategories, CATEGORY_DATA } from "./constants/ItemCategories";
 import { ItemPageSteps } from "../../steps/ItemPageSteps";
+import { DropdownItems } from "../../pages/PageElements/constants/DropdownItems";
 
 test.describe("Page with items flow", () => {
   let steps: ItemPageSteps;
@@ -33,5 +34,11 @@ test.describe("Page with items flow", () => {
     await steps.openPage(ItemCategories.FlareBootcutJeans);
     await steps.checkPageIsLoaded(CATEGORY_DATA.Bra.expectedTitleContains);
     await steps.addItemInFavorites(2);
+  });
+
+  test("Sort items by new", async () => {
+    await steps.openPage(ItemCategories.Tops);
+    await steps.checkPageIsLoaded(CATEGORY_DATA.Tops.expectedTitleContains);
+    await steps.sortingItems(DropdownItems.New);
   });
 });
