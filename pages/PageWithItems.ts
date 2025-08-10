@@ -4,9 +4,11 @@ import { BasePage } from "./BasePage";
 import { ProductCard } from "./PageElements/ProductCard";
 import { SortingDropdown } from "./PageElements/SortingDropdown";
 import { DropdownItems } from "./PageElements/constants/DropdownItems";
+import { SortPrice } from "../helpers/SortPrice";
 
 export class PageWithItems extends BasePage {
   private sort: SortingDropdown;
+  private sp = new SortPrice();
   constructor(page: Page) {
     super(page);
     this.sort = new SortingDropdown(page);
@@ -37,8 +39,8 @@ export class PageWithItems extends BasePage {
   }
 
   private cards(): Locator {
-  return this.page.getByTestId(/^product-card-\d+$/);
-}
+    return this.page.getByTestId(/^product-card-\d+$/);
+  }
 
   async waitForFirstCard(): Promise<Locator> {
     const first = this.cards().first();
@@ -71,7 +73,6 @@ export class PageWithItems extends BasePage {
   async returnAllRealCardLocators(): Promise<Locator[]> {
     await this.waitForFirstCard();
     await this.loadAllCards();
-    console.log(await this.cards().all());
     return await this.cards().all();
   }
 
@@ -83,11 +84,42 @@ export class PageWithItems extends BasePage {
   async applyFilterByNew() {
     await this.sort.sortBy(DropdownItems.New);
     const card = await this.waitForFirstCard();
-    new ProductCard(card).assertAllElementsVisible();
+    await new ProductCard(card).assertAllElementsVisible();
 
     await expect(card).toBeVisible();
 
     const newBadge = card.locator(el.new);
     await expect(newBadge).toBeVisible();
+  }
+
+  async applyFilterLowHigh() {
+    await this.sort.sortBy(DropdownItems.PriceLowHigh);
+    const arr = await this.getAllPrices();
+    console.log(arr)
+    expect(this.sp.isAsc(arr)).toBeTruthy()
+  }
+
+  async applyFilterHighLow() {
+    await this.sort.sortBy(DropdownItems.PriceHighLow);
+    const arr = await this.getAllPrices();
+    console.log(arr)
+    expect(this.sp.isDesc(arr)).toBeTruthy();
+  }
+
+  async getAllPrices(): Promise<number[]> {
+    await this.waitForFirstCard();
+    await this.loadAllCards();
+
+    const list = this.cards();
+    const count = await list.count();
+
+    const prices = await Promise.all(
+      Array.from({ length: count }, (_, i) =>
+        new ProductCard(list.nth(i)).getPrice()
+      )
+    );
+    return prices.filter(
+      (n): n is number => typeof n === "number" && !Number.isNaN(n)
+    );
   }
 }

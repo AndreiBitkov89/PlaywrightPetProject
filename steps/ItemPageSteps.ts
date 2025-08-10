@@ -57,6 +57,12 @@ export class ItemPageSteps {
       if (sortingType === DropdownItems.New) {
         await this.ctx.pageWithItems.applyFilterByNew();
       }
+      if (sortingType === DropdownItems.PriceHighLow) {
+        await this.ctx.pageWithItems.applyFilterHighLow();
+      }
+      if (sortingType === DropdownItems.PriceLowHigh) {
+        await this.ctx.pageWithItems.applyFilterLowHigh();
+      }
     });
   }
 }

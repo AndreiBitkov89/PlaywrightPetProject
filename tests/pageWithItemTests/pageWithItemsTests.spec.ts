@@ -41,4 +41,20 @@ test.describe("Page with items flow", () => {
     await steps.checkPageIsLoaded(CATEGORY_DATA.Tops.expectedTitleContains);
     await steps.sortingItems(DropdownItems.New);
   });
+
+  test("Sort prices from low to high", async () => {
+    await steps.openPage(ItemCategories.FlareBootcutJeans);
+    await steps.checkPageIsLoaded(
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
+    );
+    await steps.sortingItems(DropdownItems.PriceLowHigh);
+  });
+
+  test("Sort prices from high to low", async () => {
+    await steps.openPage(ItemCategories.FlareBootcutJeans);
+    await steps.checkPageIsLoaded(
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
+    );
+    await steps.sortingItems(DropdownItems.PriceHighLow);
+  });
 });

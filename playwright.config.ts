@@ -8,13 +8,13 @@ export default defineConfig({
   testDir: "./tests",
   timeout: 30 * 1000,
   retries: 1,
-  reporter: [["line"], ["allure-playwright"]],
+  reporter: [["line"], ["allure-playwright"], ["html"]],
   use: {
     baseURL: "https://www.aeo.eu",
     headless: true,
     screenshot: "only-on-failure",
     video: "retain-on-failure",
-    trace: "retain-on-failure",
+    trace: "on",
     viewport: { width: 1280, height: 720 },
   },
 
@@ -23,15 +23,14 @@ export default defineConfig({
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
     },
-
     // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
+    //   name: "firefox",
+    //   use: { ...devices["Desktop Firefox"] },
     // },
 
     // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
+    //   name: "webkit",
+    //   use: { ...devices["Desktop Safari"] },
     // },
 
     /* Test against mobile viewports. */

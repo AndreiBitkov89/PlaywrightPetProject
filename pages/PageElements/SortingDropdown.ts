@@ -31,12 +31,12 @@ export class SortingDropdown {
     await this.open();
 
     await this.container
-      .getByRole("button", { name: DropdownItems.New, exact: true })
+      .getByRole("button", { name: sortingType, exact: true })
       .click();
 
     await expect(
       this.container.getByRole("button", {
-        name: DropdownItems.New,
+        name: sortingType,
         exact: true,
       })
     ).toHaveAttribute("aria-pressed", "true");

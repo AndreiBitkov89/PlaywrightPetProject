@@ -1,7 +1,10 @@
 import { Page, Locator, expect } from "@playwright/test";
 import { ProductCardElements as el } from "../../locatorsStorage/ProductCardElements";
+import { SortPrice } from "../../helpers/SortPrice";
 
 export class ProductCard {
+  private readonly sp = new SortPrice();
+
   constructor(private readonly root: Locator) {}
 
   get title(): Locator {
@@ -9,7 +12,6 @@ export class ProductCard {
   }
 
   async isVisible(): Promise<boolean> {
-    // await this.root.scrollIntoViewIfNeeded();
     return await this.root.isVisible();
   }
 
@@ -27,12 +29,27 @@ export class ProductCard {
   }
 
   async assertAllElementsVisible(): Promise<void> {
-    await expect(this.root.locator(el.actualPrice)).toBeVisible();
+    await expect(this.root.locator(el.originalPrice)).toBeVisible();
     await expect(this.root.locator(el.image)).toBeVisible();
     await expect(this.root.locator(el.title)).toBeVisible();
     await expect(this.root.locator(el.favoriteButton)).toBeVisible();
   }
   async scrollIntoView(): Promise<void> {
     await this.root.scrollIntoViewIfNeeded();
+  }
+
+  async getPrice(): Promise<number | null> {
+    const discount = this.root.locator(el.currentPrice ?? "");
+    if (el.currentPrice && (await discount.count())) {
+      const txt = await discount.first().textContent();
+      return txt ? this.sp.parsePrice(txt) : null;
+    }
+
+    const regular = this.root.locator(el.originalPrice);
+    if (await regular.count()) {
+      const txt = await regular.first().textContent();
+      return txt ? this.sp.parsePrice(txt) : null;
+    }
+    return null;
   }
 }
