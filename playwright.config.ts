@@ -14,7 +14,7 @@ export default defineConfig({
     headless: true,
     screenshot: "only-on-failure",
     video: "retain-on-failure",
-    trace: "on",
+    trace: "on-first-retry",
     viewport: { width: 1280, height: 720 },
   },
 

@@ -9,8 +9,8 @@ export class SortingDropdown {
 
   constructor(page: Page) {
     this.page = page;
-    this.container = page.getByTestId(el.container);
-    this.trigger = page.locator(el.sortBy);
+    this.container = this.page.getByTestId(el.container);
+    this.trigger = this.page.locator(el.sortBy);
   }
 
   async open() {
