@@ -95,15 +95,21 @@ export class PageWithItems extends BasePage {
   async applyFilterLowHigh() {
     await this.sort.sortBy(DropdownItems.PriceLowHigh);
     const arr = await this.getAllPrices();
-    console.log(arr)
-    expect(this.sp.isAsc(arr)).toBeTruthy()
+    console.log(arr);
+    expect(this.sp.isAsc(arr)).toBeTruthy();
   }
 
   async applyFilterHighLow() {
     await this.sort.sortBy(DropdownItems.PriceHighLow);
     const arr = await this.getAllPrices();
-    console.log(arr)
     expect(this.sp.isDesc(arr)).toBeTruthy();
+  }
+
+  async checkPricesRange(min: number, max: number): Promise<boolean> {
+    await this.waitForFirstCard();
+    await this.loadAllCards();
+    const arr = await this.getAllPrices();
+    return arr.every((price) => price >= min && price <= max);
   }
 
   async getAllPrices(): Promise<number[]> {

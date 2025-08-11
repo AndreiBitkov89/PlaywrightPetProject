@@ -65,4 +65,9 @@ export class ItemPageSteps {
       }
     });
   }
+
+  async applyPriceFilter(min: number, max: number) {
+    await this.ctx.sidebarFilter.applyPriceFilter(min, max);
+    await this.ctx.pageWithItems.checkPricesRange(min, max);
+  }
 }

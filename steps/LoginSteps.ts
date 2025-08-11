@@ -48,4 +48,5 @@ export class LoginSteps {
     await this.ctx.loginPage.goToRegistrationFromSignIn();
     expect( await this.ctx.registrationPage.isLoaded()).toBeTruthy();
   }
+
 }

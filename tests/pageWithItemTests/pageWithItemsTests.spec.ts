@@ -57,4 +57,12 @@ test.describe("Page with items flow", () => {
     );
     await steps.sortingItems(DropdownItems.PriceHighLow);
   });
+
+  test("Filter prices in correct range", async () => {
+    await steps.openPage(ItemCategories.FlareBootcutJeans);
+    await steps.checkPageIsLoaded(
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
+    );
+    await steps.applyPriceFilter(40, 100);
+  });
 });

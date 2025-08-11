@@ -6,6 +6,7 @@ import { HomePage } from "../pages/HomePage";
 import { ForgotPasswordPage } from "../pages/ForgotPasswordPage";
 import { PageWithItems } from "../pages/PageWithItems";
 import { MyFavorites } from "../pages/MyFavoritesPage";
+import { SidebarFilterBy } from "../pages/PageElements/SidebarFilterBy";
 
 export class AppContext {
   public loginPage: LoginPage;
@@ -15,6 +16,7 @@ export class AppContext {
   public registrationPage: RegistrationPage;
   public pageWithItems: PageWithItems;
   public myFavorites: MyFavorites;
+  public sidebarFilter: SidebarFilterBy;
 
   constructor(page: Page) {
     this.loginPage = new LoginPage(page);
@@ -24,5 +26,6 @@ export class AppContext {
     this.registrationPage = new RegistrationPage(page);
     this.pageWithItems = new PageWithItems(page);
     this.myFavorites = new MyFavorites(page);
+    this.sidebarFilter = new SidebarFilterBy(page)
   }
 }
