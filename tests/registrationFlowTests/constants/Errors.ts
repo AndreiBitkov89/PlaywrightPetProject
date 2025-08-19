@@ -4,6 +4,5 @@ export enum Errors {
   EMAIL_REQUIRED = "Email is required.",
   PASSWORD_REQUIRED = "New password is required.",
   CONFIRM_PASSWORD_REQUIRED = "Confirm new password is required.",
-  EMAIL_INVALID ="Email option is invalid",
-
+  EMAIL_INVALID = "Email option is invalid",
 }

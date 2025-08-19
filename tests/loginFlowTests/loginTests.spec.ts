@@ -8,7 +8,7 @@ import { ErrorField } from "./constants/ErrorFields";
 test.describe("Login flow testing", () => {
   let user: User;
   let loginSteps: LoginSteps;
-  let appContext: AppContext
+  let appContext: AppContext;
 
   test.beforeEach(async ({ page }) => {
     appContext = new AppContext(page);
@@ -19,7 +19,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.openPage();
     await loginSteps.fillFieldsAndSubmit(
       process.env.LOGIN as string,
-      process.env.PASSWORD as string
+      process.env.PASSWORD as string,
     );
 
     expect(await loginSteps.assertSuccess()).toBeTruthy();
@@ -31,7 +31,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.fillFieldsAndSubmit(user.email, user.password);
 
     expect(
-      await loginSteps.assertErrorText(ErrorField.General, Errors.LOGIN_ERROR)
+      await loginSteps.assertErrorText(ErrorField.General, Errors.LOGIN_ERROR),
     );
   });
 
@@ -41,7 +41,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.fillFieldsAndSubmit(user.email, user.password);
 
     expect(
-      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_INVALID)
+      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_INVALID),
     );
   });
 
@@ -50,14 +50,14 @@ test.describe("Login flow testing", () => {
     await loginSteps.fillFieldsAndSubmit(null, null);
 
     expect(
-      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_REQUIRED)
+      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_REQUIRED),
     );
 
     expect(
       await loginSteps.assertErrorText(
         ErrorField.Password,
-        Errors.PASSWORD_REQUIRED
-      )
+        Errors.PASSWORD_REQUIRED,
+      ),
     );
   });
 
@@ -66,7 +66,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.goToForgotPassAndCheckRedirection();
   });
 
-   test("Check the redirection to registration from login page", async () => {
+  test("Check the redirection to registration from login page", async () => {
     await loginSteps.openPage();
     await loginSteps.goToRegistrationFromSignIn();
   });

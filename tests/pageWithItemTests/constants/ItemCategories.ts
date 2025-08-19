@@ -1,7 +1,7 @@
 export enum ItemCategories {
   FlareBootcutJeans = "FlareBootcutJeans",
   Bra = "Bra",
-  Tops = "Tops"
+  Tops = "Tops",
 }
 
 export const CATEGORY_DATA: Record<
@@ -17,7 +17,7 @@ export const CATEGORY_DATA: Record<
     expectedTitleContains: "Flare & Bootcut Jeans",
     expectedProductKeywords: ["flare", "bootcut"],
   },
-   [ItemCategories.Bra]: {
+  [ItemCategories.Bra]: {
     urlAnchor: "aerie/bras/bras/push-up-bras",
     expectedTitleContains: "Push Up Bras",
     expectedProductKeywords: ["Push Up Bra"],

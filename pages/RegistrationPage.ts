@@ -64,7 +64,7 @@ export class RegistrationPage extends BasePage {
 
   async fillAllRequiredFields(
     user: User,
-    wrongPassword?: string
+    wrongPassword?: string,
   ): Promise<RegistrationPage> {
     await this.fillName(user.firstName);
     await this.fillSurname(user.lastName);

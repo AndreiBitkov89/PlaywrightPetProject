@@ -1,8 +1,7 @@
 import { Page, expect } from "@playwright/test";
 
 export class BasePage {
-  constructor( public page: Page) {}
-
+  constructor(public page: Page) {}
 
   async closePopupsIfExists(): Promise<void> {
     const subscribeDialogClose = this.page.locator(
@@ -11,16 +10,15 @@ export class BasePage {
     const cookieBannerClose = this.page.locator(
       "#onetrust-close-btn-container .onetrust-close-btn-handler"
     );
-    if (
-      await subscribeDialogClose.isVisible({ timeout: 1000 }).catch(() => false)
-    ) {
-      await subscribeDialogClose.click().catch(() => {});
-    }
-    if (
-      await cookieBannerClose.isVisible({ timeout: 1000 }).catch(() => false)
-    ) {
-      await cookieBannerClose.click().catch(() => {});
-    }
+    try {
+      await subscribeDialogClose.waitFor({ state: "visible", timeout: 1000 });
+      await subscribeDialogClose.click();
+    } catch {}
+
+    try {
+      await cookieBannerClose.waitFor({ state: "visible", timeout: 1000 });
+      await cookieBannerClose.click();
+    } catch {}
   }
 
   async isLoaded(selector: string): Promise<boolean> {

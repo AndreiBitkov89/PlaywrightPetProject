@@ -16,14 +16,14 @@ export class SortingDropdown {
   async open() {
     await expect(
       this.container,
-      "Container must not be in DOM before open"
+      "Container must not be in DOM before open",
     ).toHaveCount(0);
 
     await this.trigger.click();
 
     await expect(
       this.container,
-      "Container should appear after opening"
+      "Container should appear after opening",
     ).toBeVisible();
   }
 
@@ -38,7 +38,7 @@ export class SortingDropdown {
       this.container.getByRole("button", {
         name: sortingType,
         exact: true,
-      })
+      }),
     ).toHaveAttribute("aria-pressed", "true");
   }
 }

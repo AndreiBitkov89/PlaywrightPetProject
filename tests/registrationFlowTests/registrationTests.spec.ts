@@ -15,7 +15,7 @@ test.describe("Registration flow", () => {
 
   test.beforeEach(async ({ page }) => {
     appContext = new AppContext(page);
-    registrationPage = new RegistrationPage(page)
+    registrationPage = new RegistrationPage(page);
     steps = new RegistrationSteps(appContext);
   });
 
@@ -78,7 +78,7 @@ test.describe("Registration flow", () => {
     await steps.assertErrorText(ErrorField.Password, Errors.PASSWORD_REQUIRED);
     await steps.assertErrorText(
       ErrorField.ConfirmPassword,
-      Errors.CONFIRM_PASSWORD_REQUIRED
+      Errors.CONFIRM_PASSWORD_REQUIRED,
     );
   });
 
@@ -100,7 +100,7 @@ test.describe("Registration flow", () => {
     await steps.checkTerms();
     await steps.submit();
     expect(
-      await registrationPage.isValidationFailed(ErrorField.ConfirmPassword)
+      await registrationPage.isValidationFailed(ErrorField.ConfirmPassword),
     ).toBeTruthy();
   });
 });

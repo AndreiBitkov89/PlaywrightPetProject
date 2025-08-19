@@ -3,5 +3,5 @@ export const ProductCardElements = {
   title: '[data-testid="product-card-title"]',
   originalPrice: '[data-testid="originalPrice"]',
   currentPrice: "[data-testid='currentPrice']",
-  image: '[data-testid$="-image-link"]'
+  image: '[data-testid$="-image-link"]',
 };

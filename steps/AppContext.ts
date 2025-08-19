@@ -26,6 +26,6 @@ export class AppContext {
     this.registrationPage = new RegistrationPage(page);
     this.pageWithItems = new PageWithItems(page);
     this.myFavorites = new MyFavorites(page);
-    this.sidebarFilter = new SidebarFilterBy(page)
+    this.sidebarFilter = new SidebarFilterBy(page);
   }
 }

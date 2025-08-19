@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 export class InputField {
   constructor(
     private readonly page: Page,
-    private readonly inputSelector: string
+    private readonly inputSelector: string,
   ) {}
 
   async fill(value: string): Promise<void> {

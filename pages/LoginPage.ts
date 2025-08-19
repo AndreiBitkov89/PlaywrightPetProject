@@ -59,12 +59,12 @@ export class LoginPage extends BasePage {
     return await this.page.locator(selector).textContent();
   }
 
-  async goToForgotPass(){
+  async goToForgotPass() {
     await this.page.locator(el.forgotPassLink).click();
-    await this.page.waitForURL('/de/en/account/forgot-password')
+    await this.page.waitForURL("/de/en/account/forgot-password");
   }
 
-  async goToRegistrationFromSignIn(){
+  async goToRegistrationFromSignIn() {
     await this.page.click(el.createAccountLink);
   }
 }

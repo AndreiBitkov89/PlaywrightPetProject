@@ -8,5 +8,5 @@ export const PageWithItemsElements = {
   cards: "div[data-testid^='product-card-']",
   new: 'img[src*="EN_86fd4272de.png"]',
   emptyListMessage: ".EmptyListingFallback__textWrapper h2",
-  emptyListSearch: ".ExpandableSearchInput__inputWrapper"
+  emptyListSearch: ".ExpandableSearchInput__inputWrapper",
 };

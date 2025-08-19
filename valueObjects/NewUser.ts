@@ -5,7 +5,7 @@ export class User {
     public email: string | null,
     public password: string | null,
     public firstName: string | null,
-    public lastName: string | null
+    public lastName: string | null,
   ) {}
 
   static generateRandom(): User {
@@ -13,12 +13,11 @@ export class User {
       faker.internet.email(),
       faker.internet.password(),
       faker.person.firstName(),
-      faker.person.lastName()
+      faker.person.lastName(),
     );
   }
 
   static generateWithEmptyFields(fieldsToNullify: Array<keyof User>): User {
-
     const data: Record<keyof User, string | null> = {
       email: faker.internet.email(),
       password: faker.internet.password(),
@@ -33,12 +32,12 @@ export class User {
     return new User(data.email, data.password, data.firstName, data.lastName);
   }
 
-   static generateUserWithInvalidEmail(): User {
+  static generateUserWithInvalidEmail(): User {
     return new User(
       faker.internet.email() + "asd",
       faker.internet.password(),
       faker.person.firstName(),
-      faker.person.lastName()
+      faker.person.lastName(),
     );
   }
 }
