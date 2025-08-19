@@ -66,8 +66,14 @@ export class ItemPageSteps {
     });
   }
 
-  async applyPriceFilter(min: number, max: number) {
+  async applyPriceFilterAndCheckItems(min: number, max: number) {
     await this.ctx.sidebarFilter.applyPriceFilter(min, max);
     await this.ctx.pageWithItems.checkPricesRange(min, max);
+  }
+
+  async getEmptyListAndCheckMessage() {
+    await this.ctx.sidebarFilter.applyPriceFilter(1000, 2000);
+    await this.ctx.pageWithItems.checkEmptyList();
+    await this.ctx.pageWithItems.getEmptyListMessage();
   }
 }

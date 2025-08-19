@@ -63,6 +63,14 @@ test.describe("Page with items flow", () => {
     await steps.checkPageIsLoaded(
       CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
-    await steps.applyPriceFilter(40, 100);
+    await steps.applyPriceFilterAndCheckItems(40, 100);
+  });
+
+    test("Apply Filter and get empty list", async () => {
+    await steps.openPage(ItemCategories.Tops);
+    await steps.checkPageIsLoaded(
+      CATEGORY_DATA.Tops.expectedTitleContains
+    );
+    await steps.getEmptyListAndCheckMessage();
   });
 });

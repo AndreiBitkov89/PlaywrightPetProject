@@ -112,6 +112,22 @@ export class PageWithItems extends BasePage {
     return arr.every((price) => price >= min && price <= max);
   }
 
+  async checkEmptyList(): Promise<boolean> {
+    await this.page.locator(el.emptyListMessage).waitFor({ state: "visible" });
+    return (
+      (await this.page.locator(el.emptyListMessage).isVisible()) &&
+      (await this.page.locator(el.emptyListSearch).isVisible())
+    );
+  }
+
+  async getEmptyListMessage() {
+    const text = await this.page.locator(el.emptyListMessage).textContent();
+    expect(text).not.toBeNull();
+    expect(text).toContain(
+      "Sorry, we couldn't find what you were looking for."
+    );
+  }
+
   async getAllPrices(): Promise<number[]> {
     await this.waitForFirstCard();
     await this.loadAllCards();
