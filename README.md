@@ -8,34 +8,32 @@ End‑to‑end UI tests for **aeo.eu** using **Playwright + TypeScript**. The su
 
 ## Architecture & Patterns
 
-* **Page Object Model (POM):**
+- **Page Object Model (POM):**
+  - `pages/*` encapsulates page‑level actions and assertions (e.g., `HomePage`, `AuthPage`).
 
-  * `pages/*` encapsulates page‑level actions and assertions (e.g., `HomePage`, `AuthPage`).
-* **Element Object / UI Components:**
+- **Element Object / UI Components:**
+  - Reusable widgets like inputs, dropdowns, product cards (e.g., `elements/*` or `components/*`).
 
-  * Reusable widgets like inputs, dropdowns, product cards (e.g., `elements/*` or `components/*`).
-* **Steps Layer:**
+- **Steps Layer:**
+  - `steps/*` composes user scenarios ("business steps") built on top of POM/components. Improves readability and reuse.
 
-  * `steps/*` composes user scenarios ("business steps") built on top of POM/components. Improves readability and reuse.
-* **Context / DI:**
+- **Context / DI:**
+  - `AppContext` wires pages/components for each test, keeping `beforeEach` clean.
 
-  * `AppContext` wires pages/components for each test, keeping `beforeEach` clean.
-* **Value Objects & Test Data:**
+- **Value Objects & Test Data:**
+  - `valueObjects/*` (e.g., `User`) + Faker for realistic data with clear typing.
 
-  * `valueObjects/*` (e.g., `User`) + Faker for realistic data with clear typing.
-* **Locators Storage:**
+- **Locators Storage:**
+  - `locatorsStorage/*` centralizes selectors. Prefer `data-testid`/roles over CSS classes/text.
 
-  * `locatorsStorage/*` centralizes selectors. Prefer `data-testid`/roles over CSS classes/text.
-* **Reporting & Artifacts:**
-
-  * HTML report (Playwright) + Allure (`allure-results`, screenshots, videos, traces on failure).
+- **Reporting & Artifacts:**
+  - HTML report (Playwright) + Allure (`allure-results`, screenshots, videos, traces on failure).
 
 ## Environment
 
 Create `.env` from the example and set variables as needed:
 
 ```
-BASE_URL=https://www.aeo.eu
 LOGIN=your_email@example.com
 PASSWORD=your_password
 ```
@@ -45,7 +43,7 @@ PASSWORD=your_password
 Install & prepare:
 
 ```bash
-npm ci            # or: npm i
+npm i
 npx playwright install
 ```
 
@@ -61,9 +59,9 @@ Reports & artifacts:
 
 ```bash
 npm run report              # open Playwright HTML report
-npm run allure:clean && \
-  npm run allure:gen && \
-  npm run allure:open       # generate & view Allure
+npm run allure:clean
+npm run allure:gen
+npm run allure:open       # generate & view Allure
 ```
 
 Quality gates:

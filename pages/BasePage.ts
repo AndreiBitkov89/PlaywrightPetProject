@@ -5,10 +5,10 @@ export class BasePage {
 
   async closePopupsIfExists(): Promise<void> {
     const subscribeDialogClose = this.page.locator(
-      "button[aria-label='Close dialog']"
+      "button[aria-label='Close dialog']",
     );
     const cookieBannerClose = this.page.locator(
-      "#onetrust-close-btn-container .onetrust-close-btn-handler"
+      "#onetrust-close-btn-container .onetrust-close-btn-handler",
     );
     try {
       await subscribeDialogClose.waitFor({ state: "visible", timeout: 1000 });

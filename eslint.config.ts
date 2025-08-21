@@ -6,13 +6,12 @@ export default tseslint.config({
     parser: tseslint.parser,
     parserOptions: {
       project: "./tsconfig.eslint.json",
-      
-    }
+    },
   },
   plugins: {
-    "@typescript-eslint": tseslint.plugin
+    "@typescript-eslint": tseslint.plugin,
   },
   rules: {
-    "@typescript-eslint/no-unused-vars": "warn"
-  }
+    "@typescript-eslint/no-unused-vars": "warn",
+  },
 });
