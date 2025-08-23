@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { RegistrationElements as el } from "../locatorsStorage/RegistrationElements";
 import { User } from "../valueObjects/NewUser";
 import { BasePage } from "./BasePage";

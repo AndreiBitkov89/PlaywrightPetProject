@@ -17,7 +17,7 @@ End‑to‑end UI tests for **aeo.eu** using **Playwright + TypeScript**. The su
 - **Steps Layer:**
   - `steps/*` composes user scenarios ("business steps") built on top of POM/components. Improves readability and reuse.
 
-- **Context / DI:**
+- **Context:**
   - `AppContext` wires pages/components for each test, keeping `beforeEach` clean.
 
 - **Value Objects & Test Data:**
