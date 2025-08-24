@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { FilterElements as el } from "../../locatorsStorage/FilterElements";
 
 export class SidebarFilterBy {
@@ -9,8 +9,6 @@ export class SidebarFilterBy {
 
   async applyPriceFilter(min: number | null, max: number | null) {
     await this.page.locator(el.priceFilter).scrollIntoViewIfNeeded();
-    // await expect(this.page.locator(el.priceFilter)).toBeFocused();
-    // await this.page.locator(el.priceFilter).click();
 
     await expect(this.page.locator(el.minPrice)).toBeVisible();
 

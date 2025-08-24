@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from "@playwright/test";
+import { Locator, expect } from "@playwright/test";
 import { ProductCardElements as el } from "../../locatorsStorage/ProductCardElements";
 import { SortPrice } from "../../helpers/SortPrice";
 
@@ -51,5 +51,17 @@ export class ProductCard {
       return txt ? this.sp.parsePrice(txt) : null;
     }
     return null;
+  }
+
+  async getOriginalPrice(): Promise<number | null> {
+    const txt = await this.root.locator(el.originalPrice).textContent();
+
+    if (!txt) return null;
+    return this.sp.parsePrice(txt);
+  }
+
+  async clickTitle() {
+    await this.title.waitFor({ state: "visible" });
+    await this.title.click();
   }
 }

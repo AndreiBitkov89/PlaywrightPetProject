@@ -95,7 +95,6 @@ export class PageWithItems extends BasePage {
   async applyFilterLowHigh() {
     await this.sort.sortBy(DropdownItems.PriceLowHigh);
     const arr = await this.getAllPrices();
-    console.log(arr);
     expect(this.sp.isAsc(arr)).toBeTruthy();
   }
 
@@ -143,5 +142,17 @@ export class PageWithItems extends BasePage {
     return prices.filter(
       (n): n is number => typeof n === "number" && !Number.isNaN(n),
     );
+  }
+
+  async getItemName(index: number): Promise<string | null> {
+    return await (await this.findCardFromIndex(index)).getTitleText();
+  }
+
+  async getOriginalPrice(index: number): Promise<number | null> {
+    return await (await this.findCardFromIndex(index)).getOriginalPrice();
+  }
+
+  async goToItem(index: number) {
+    await (await this.findCardFromIndex(index)).clickTitle();
   }
 }

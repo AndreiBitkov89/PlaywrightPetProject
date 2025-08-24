@@ -3,11 +3,11 @@ import { AppContext } from "./AppContext";
 import {
   ItemCategories,
   CATEGORY_DATA,
-} from "../tests/pageWithItemTests/constants/ItemCategories";
+} from "../tests/itemLogicTests/constants/ItemCategories";
 import { ProductCard } from "../pages/PageElements/ProductCard";
 import { DropdownItems } from "../pages/PageElements/constants/DropdownItems";
 
-export class ItemPageSteps {
+export class PageWithItemsSteps {
   constructor(private ctx: AppContext) {}
 
   async openPage(category: ItemCategories): Promise<this> {

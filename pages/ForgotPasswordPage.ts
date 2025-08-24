@@ -8,17 +8,13 @@ export class ForgotPasswordPage extends BasePage {
   }
 
   async isLoaded(): Promise<boolean> {
-    try {
-      await this.page
-        .locator(el.cancelButton)
-        .waitFor({ state: "visible", timeout: 4000 });
-      await this.page
-        .locator(el.sendEmailButton)
-        .waitFor({ state: "visible", timeout: 4000 });
+    await this.page
+      .locator(el.cancelButton)
+      .waitFor({ state: "visible", timeout: 4000 });
+    await this.page
+      .locator(el.sendEmailButton)
+      .waitFor({ state: "visible", timeout: 4000 });
 
-      return true;
-    } catch (e) {
-      return false;
-    }
+    return this.page.locator(el.cancelButton).isVisible();
   }
 }
