@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { UserNavigationSectionElements as el } from "../../locatorsStorage/UserNavigationSectionElements";
+import { UserNavigationSectionElements as el } from "./UserNavigationSectionElements";
 
 export class UserNavigationSection {
   constructor(private page: Page) {}

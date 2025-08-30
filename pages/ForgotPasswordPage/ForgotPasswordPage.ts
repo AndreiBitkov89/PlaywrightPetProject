@@ -1,6 +1,6 @@
-import { BasePage } from "./BasePage";
+import { BasePage } from "../BasePage";
 import { Page } from "@playwright/test";
-import { ForgotPasswordElements as el } from "../locatorsStorage/ForgotPasswordElements";
+import { ForgotPasswordElements as el } from "./ForgotPasswordElements";
 
 export class ForgotPasswordPage extends BasePage {
   constructor(page: Page) {

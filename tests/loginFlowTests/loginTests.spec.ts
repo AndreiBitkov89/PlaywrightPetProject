@@ -26,7 +26,7 @@ test.describe("Login flow testing", () => {
   });
 
   test("Directly open login page, enter incorrect credentials and get error", async () => {
-    user = User.generateRandom();
+    user = User.generateRandomUser();
     await loginSteps.openPage();
     await loginSteps.fillFieldsAndSubmit(user.email, user.password);
 

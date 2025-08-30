@@ -1,5 +1,5 @@
 import { Locator, expect } from "@playwright/test";
-import { ProductCardElements as el } from "../../locatorsStorage/ProductCardElements";
+import { ProductCardElements as el } from "./ProductCardElements";
 import { SortPrice } from "../../helpers/SortPrice";
 
 export class ProductCard {

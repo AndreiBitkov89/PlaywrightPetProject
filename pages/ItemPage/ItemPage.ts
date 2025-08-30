@@ -1,7 +1,7 @@
-import { BasePage } from "./BasePage";
+import { BasePage } from "../BasePage";
 import { Page } from "@playwright/test";
-import { ItemPageElements as el } from "../locatorsStorage/ItemPageElements";
-import { SortPrice } from "../helpers/SortPrice";
+import { ItemPageElements as el } from "./ItemPageElements";
+import { SortPrice } from "../../helpers/SortPrice";
 
 export class ItemPage extends BasePage {
   sp = new SortPrice();

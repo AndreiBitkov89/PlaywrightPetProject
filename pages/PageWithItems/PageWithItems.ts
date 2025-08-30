@@ -1,10 +1,10 @@
 import { Locator, Page, expect } from "@playwright/test";
-import { PageWithItemsElements as el } from "../locatorsStorage/PageWithItemsElements";
-import { BasePage } from "./BasePage";
-import { ProductCard } from "./PageElements/ProductCard";
-import { SortingDropdown } from "./PageElements/SortingDropdown";
-import { DropdownItems } from "./PageElements/constants/DropdownItems";
-import { SortPrice } from "../helpers/SortPrice";
+import { PageWithItemsElements as el } from "./PageWithItemsElements";
+import { BasePage } from "../BasePage";
+import { ProductCard } from "../../commonPageElements/ProductCard/ProductCard";
+import { SortingDropdown } from "../../commonPageElements/SortingDropdown/SortingDropdown";
+import { DropdownItems } from "../../commonPageElements/constants/dropDownItems";
+import { SortPrice } from "../../helpers/SortPrice";
 
 export class PageWithItems extends BasePage {
   private sort: SortingDropdown;

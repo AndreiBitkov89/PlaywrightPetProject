@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { HomePageElements as el } from "../locatorsStorage/HomePageElements";
-import { BasePage } from "./BasePage";
+import { HomePageElements as el } from "./HomePageElements";
+import { BasePage } from "../BasePage";
 
 export class HomePage extends BasePage {
   constructor(page: Page) {

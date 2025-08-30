@@ -4,8 +4,8 @@ import {
   ItemCategories,
   CATEGORY_DATA,
 } from "../tests/itemLogicTests/constants/ItemCategories";
-import { ProductCard } from "../pages/PageElements/ProductCard";
-import { DropdownItems } from "../pages/PageElements/constants/DropdownItems";
+import { ProductCard } from "../commonPageElements/ProductCard/ProductCard";
+import { DropdownItems } from "../commonPageElements/constants/dropDownItems";
 
 export class PageWithItemsSteps {
   constructor(private ctx: AppContext) {}

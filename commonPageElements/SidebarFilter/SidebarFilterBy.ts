@@ -1,5 +1,5 @@
 import { Page, expect } from "@playwright/test";
-import { FilterElements as el } from "../../locatorsStorage/FilterElements";
+import { FilterElements as el } from "./FilterElements";
 
 export class SidebarFilterBy {
   private readonly page: Page;

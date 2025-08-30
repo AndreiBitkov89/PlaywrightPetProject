@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { AppContext } from "../../steps/AppContext";
 import { ItemCategories, CATEGORY_DATA } from "./constants/ItemCategories";
 import { PageWithItemsSteps } from "../../steps/PageWithItemsSteps";
-import { DropdownItems } from "../../pages/PageElements/constants/DropdownItems";
+import { DropdownItems } from "../../pages/commonPageElements/constants/dropDownItems";
 
 test.describe("Page with items flow", () => {
   let steps: PageWithItemsSteps;

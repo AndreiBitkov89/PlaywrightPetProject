@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { MyFavoritesElements as el } from "../locatorsStorage/MyFavoritesElements";
-import { BasePage } from "./BasePage";
+import { MyFavoritesElements as el } from "./MyFavoritesElements";
+import { BasePage } from "../BasePage";
 
 export class MyFavorites extends BasePage {
   constructor(page: Page) {

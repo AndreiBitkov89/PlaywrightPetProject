@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { RegistrationPage } from "../../pages/RegistrationPage";
+import { RegistrationPage } from "../../pages/RegistrationPage/RegistrationPage";
 import { User } from "../../valueObjects/NewUser";
 import { Errors } from "./constants/Errors";
 import { ErrorField } from "./constants/ErrorFields";
@@ -20,7 +20,7 @@ test.describe("Registration flow", () => {
   });
 
   test("Directly open registration page and create new account", async () => {
-    user = User.generateRandom();
+    user = User.generateRandomUser();
 
     await steps.openPage();
     await steps.fillFields(user);
@@ -31,7 +31,7 @@ test.describe("Registration flow", () => {
   });
 
   test("Submit button disabled without accepted terms", async ({}) => {
-    user = User.generateRandom();
+    user = User.generateRandomUser();
 
     await steps.openPage();
     await steps.fillFields(user);
@@ -93,7 +93,7 @@ test.describe("Registration flow", () => {
   });
 
   test("Error after confirmation registration with different password", async ({}) => {
-    user = User.generateRandom();
+    user = User.generateRandomUser();
 
     await steps.openPage();
     await steps.fillFields(user, faker.internet.password());

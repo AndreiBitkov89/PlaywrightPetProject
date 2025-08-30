@@ -1,13 +1,13 @@
-import { RegistrationPage } from "../pages/RegistrationPage";
-import { UserNavigationSection } from "../pages/PageElements/UserNavigationSection";
+import { RegistrationPage } from "../pages/RegistrationPage/RegistrationPage";
+import { UserNavigationSection } from "../commonPageElements/UserNavigationSection/UserNavigationSection";
 import { Page } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
-import { HomePage } from "../pages/HomePage";
-import { ForgotPasswordPage } from "../pages/ForgotPasswordPage";
-import { PageWithItems } from "../pages/PageWithItems";
-import { MyFavorites } from "../pages/MyFavoritesPage";
-import { SidebarFilterBy } from "../pages/PageElements/SidebarFilterBy";
-import { ItemPage } from "../pages/ItemPage";
+import { LoginPage } from "../pages/LoginPage/LoginPage";
+import { HomePage } from "../pages/HomePage/HomePage";
+import { ForgotPasswordPage } from "../pages/ForgotPasswordPage/ForgotPasswordPage";
+import { PageWithItems } from "../pages/PageWithItems/PageWithItems";
+import { MyFavorites } from "../pages/MyFavoritesPage/MyFavoritesPage";
+import { SidebarFilterBy } from "../commonPageElements/SidebarFilter/SidebarFilterBy";
+import { ItemPage } from "../pages/ItemPage/ItemPage";
 
 export class AppContext {
   public loginPage: LoginPage;

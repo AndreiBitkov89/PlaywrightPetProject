@@ -8,7 +8,7 @@ export class User {
     public lastName: string | null,
   ) {}
 
-  static generateRandom(): User {
+  static generateRandomUser(): User {
     return new User(
       faker.internet.email(),
       faker.internet.password(),

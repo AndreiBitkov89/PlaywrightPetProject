@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { RegistrationElements as el } from "../locatorsStorage/RegistrationElements";
-import { User } from "../valueObjects/NewUser";
-import { BasePage } from "./BasePage";
-import { ErrorField } from "../tests/registrationFlowTests/constants/ErrorFields";
-import { InputField } from "../elementsObjects/InputField";
+import { RegistrationElements as el } from "./RegistrationElements";
+import { User } from "../../valueObjects/NewUser";
+import { BasePage } from "../BasePage";
+import { ErrorField } from "../../tests/registrationFlowTests/constants/ErrorFields";
+import { InputField } from "../../elementsObjects/InputField";
 
 export class RegistrationPage extends BasePage {
   private nameField: InputField;
