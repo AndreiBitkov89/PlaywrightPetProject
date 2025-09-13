@@ -15,12 +15,32 @@ test.describe("Page with items flow", () => {
     itemSteps = new ItemSteps(appContext);
   });
 
-  test("Open correct item and check title and price", async () => {
+  test("Open item page and check title and price", async () => {
     await itemPageSteps.openPage(ItemCategories.FlareBootcutJeans);
     await itemPageSteps.checkPageIsLoaded(
-      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains,
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
 
-    await itemSteps.checkThatCorrectItemPAgesIsOpened(1);
+    await itemSteps.checkThatCorrectItemPageIsOpened(1);
+  });
+
+  test("Open item page and increase quantity on 1", async () => {
+    await itemPageSteps.openPage(ItemCategories.Tops);
+    await itemPageSteps.checkPageIsLoaded(
+      CATEGORY_DATA.Tops.expectedTitleContains
+    );
+
+    await itemSteps.checkThatCorrectItemPageIsOpened(2);
+    await itemSteps.changeQuantity(true);
+  });
+
+   test("Open item page and increase quantity on 5", async () => {
+    await itemPageSteps.openPage(ItemCategories.Tops);
+    await itemPageSteps.checkPageIsLoaded(
+      CATEGORY_DATA.Tops.expectedTitleContains
+    );
+
+    await itemSteps.checkThatCorrectItemPageIsOpened(2);
+    await itemSteps.changeQuantity(true, 5);
   });
 });

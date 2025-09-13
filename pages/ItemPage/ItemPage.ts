@@ -2,6 +2,7 @@ import { BasePage } from "../BasePage";
 import { Page } from "@playwright/test";
 import { ItemPageElements as el } from "./ItemPageElements";
 import { SortPrice } from "../../helpers/SortPrice";
+import { expect } from "@playwright/test";
 
 export class ItemPage extends BasePage {
   sp = new SortPrice();
@@ -34,4 +35,35 @@ export class ItemPage extends BasePage {
       return this.sp.parsePrice(priceInString);
     } else return null;
   }
+
+  async changeQuantityAndCheckChanges(increase: boolean, steps: number = 1) {
+    const quantityInput = this.page.locator(el.quantityInput);
+    const button = increase
+      ? this.page.locator(el.incrementQuantity)
+      : this.page.locator(el.decrementQuantity);
+
+    await quantityInput.waitFor({ state: "visible" });
+
+    const initialQuantity = await this.getQuantity();
+
+    for (let i = 0; i < steps; i++) {
+      await button.click();
+    }
+
+    await expect
+      .poll(async () => await this.getQuantity())
+      .toBe(increase ? initialQuantity + steps : initialQuantity - steps);
+  }
+
+  private async getQuantity(): Promise<number> {
+  const input = this.page.locator(el.quantityInput);
+  const value = await input.inputValue();
+
+  if (!value) {
+    throw new Error("Quantity input is empty");
+  }
+
+  return parseInt(value, 10);
+}
+
 }

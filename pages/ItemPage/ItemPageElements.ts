@@ -6,4 +6,7 @@ export const ItemPageElements = {
   productDescription: "*[data-testid='productDescription']",
   quantitySelector: "*[data-testid='quantity-selector']",
   colorOptions: "*[data-testid='color-options']",
+  incrementQuantity: '*[data-testid="increment-btn"]',
+  decrementQuantity: '*[data-testid="decrement-btn"]',
+  quantityInput: '*[data-testid="quantity-input"]',
 };
