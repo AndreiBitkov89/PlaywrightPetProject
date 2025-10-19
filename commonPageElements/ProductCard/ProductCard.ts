@@ -1,6 +1,6 @@
 import { Locator, expect } from "@playwright/test";
 import { ProductCardElements as el } from "./ProductCardElements";
-import { SortPrice } from "../../helpers/SortPrice";
+import { SortPrice } from "../../src/helpers/SortPrice";
 
 export class ProductCard {
   private readonly sp = new SortPrice();

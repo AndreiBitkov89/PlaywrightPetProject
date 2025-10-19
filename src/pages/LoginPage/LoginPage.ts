@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { LoginPageElements as el } from "./LoginPageElements";
 import { BasePage } from "../BasePage";
-import { ErrorField } from "../../tests/loginFlowTests/constants/ErrorFields";
-import { InputField } from "../../elementsObjects/InputField";
+import { ErrorField } from "../../../spec/ui/loginFlowTests/constants/ErrorFields";
+import { InputField } from "../../../elementsObjects/InputField";
 
 export class LoginPage extends BasePage {
   private loginField: InputField;

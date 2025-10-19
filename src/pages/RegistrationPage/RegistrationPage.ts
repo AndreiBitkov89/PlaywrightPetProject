@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { RegistrationElements as el } from "../../src/pages/RegistrationPage/RegistrationElements";
-import { User } from "../../src/valueObjects/NewUser";
-import { BasePage } from "../../src/pages/BasePage";
-import { ErrorField } from "../../spec/ui/registrationFlowTests/constants/ErrorFields";
-import { InputField } from "../../elementsObjects/InputField";
+import { RegistrationElements as el } from "./RegistrationElements";
+import { User } from "../../valueObjects/NewUser";
+import { BasePage } from "../BasePage";
+import { ErrorField } from "../../../spec/ui/registrationFlowTests/constants/ErrorFields";
+import { InputField } from "../../../elementsObjects/InputField";
 
 export class RegistrationPage extends BasePage {
   private nameField: InputField;
@@ -64,7 +64,7 @@ export class RegistrationPage extends BasePage {
 
   async fillAllRequiredFields(
     user: User,
-    wrongPassword?: string,
+    wrongPassword?: string
   ): Promise<RegistrationPage> {
     await this.fillName(user.firstName);
     await this.fillSurname(user.lastName);

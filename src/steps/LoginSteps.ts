@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { ErrorField } from "../tests/loginFlowTests/constants/ErrorFields";
-import { Errors } from "../tests/loginFlowTests/constants/Errors";
+import { Errors } from "../../spec/ui/loginFlowTests/constants/Errors";
 import { AppContext } from "./AppContext";
+import { ErrorField } from "../../spec/ui/loginFlowTests/constants/ErrorFields";
 
 export class LoginSteps {
   constructor(private ctx: AppContext) {}
@@ -15,7 +15,7 @@ export class LoginSteps {
 
   async fillFieldsAndSubmit(
     login: string | null,
-    password: string | null,
+    password: string | null
   ): Promise<this> {
     await test.step("Fill all required fields", async () => {
       await this.ctx.loginPage.fillAllFields(login, password);
@@ -34,7 +34,7 @@ export class LoginSteps {
 
   async assertErrorText(errorField: ErrorField, errorText: Errors) {
     expect(await this.ctx.loginPage.getErrorText(errorField)).toEqual(
-      errorText,
+      errorText
     );
   }
 

@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
 import { AppContext } from "./AppContext";
+import { ProductCard } from "../../commonPageElements/ProductCard/ProductCard";
+import { DropdownItems } from "../../commonPageElements/constants/dropDownItems";
 import {
   ItemCategories,
   CATEGORY_DATA,
-} from "../tests/itemLogicTests/constants/ItemCategories";
-import { ProductCard } from "../commonPageElements/ProductCard/ProductCard";
-import { DropdownItems } from "../commonPageElements/constants/dropDownItems";
+} from "../../spec/ui/itemLogicTests/constants/ItemCategories";
 
 export class PageWithItemsSteps {
   constructor(private ctx: AppContext) {}

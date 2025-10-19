@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import { AppContext } from "../../steps/AppContext";
+import { AppContext } from "../../../src/steps/AppContext";
 import { ItemCategories, CATEGORY_DATA } from "./constants/ItemCategories";
-import { PageWithItemsSteps } from "../../steps/PageWithItemsSteps";
-import { DropdownItems } from "../../commonPageElements/constants/dropDownItems"
+import { PageWithItemsSteps } from "../../../src/steps/PageWithItemsSteps";
+import { DropdownItems } from "../../../commonPageElements/constants/dropDownItems";
 
 test.describe("Page with items flow", () => {
   let steps: PageWithItemsSteps;
@@ -16,7 +16,7 @@ test.describe("Page with items flow", () => {
   test("Open page with items and check loading and title", async () => {
     await steps.openPage(ItemCategories.FlareBootcutJeans);
     await steps.checkPageIsLoaded(
-      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains,
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
   });
   test("Check number and structure of items in American Eagle", async () => {
@@ -45,7 +45,7 @@ test.describe("Page with items flow", () => {
   test("Sort prices from low to high", async () => {
     await steps.openPage(ItemCategories.FlareBootcutJeans);
     await steps.checkPageIsLoaded(
-      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains,
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
     await steps.sortingItems(DropdownItems.PriceLowHigh);
   });
@@ -53,7 +53,7 @@ test.describe("Page with items flow", () => {
   test("Sort prices from high to low", async () => {
     await steps.openPage(ItemCategories.FlareBootcutJeans);
     await steps.checkPageIsLoaded(
-      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains,
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
     await steps.sortingItems(DropdownItems.PriceHighLow);
   });
@@ -61,7 +61,7 @@ test.describe("Page with items flow", () => {
   test("Filter prices in correct range", async () => {
     await steps.openPage(ItemCategories.FlareBootcutJeans);
     await steps.checkPageIsLoaded(
-      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains,
+      CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
     await steps.applyPriceFilterAndCheckItems(40, 100);
   });

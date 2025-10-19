@@ -1,12 +1,12 @@
 import { RegistrationPage } from "../pages/RegistrationPage/RegistrationPage";
-import { UserNavigationSection } from "../commonPageElements/UserNavigationSection/UserNavigationSection";
+import { UserNavigationSection } from "../../commonPageElements/UserNavigationSection/UserNavigationSection";
 import { Page } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage/LoginPage";
 import { HomePage } from "../pages/HomePage/HomePage";
 import { ForgotPasswordPage } from "../pages/ForgotPasswordPage/ForgotPasswordPage";
 import { PageWithItems } from "../pages/PageWithItems/PageWithItems";
 import { MyFavorites } from "../pages/MyFavoritesPage/MyFavoritesPage";
-import { SidebarFilterBy } from "../commonPageElements/SidebarFilter/SidebarFilterBy";
+import { SidebarFilterBy } from "../../commonPageElements/SidebarFilter/SidebarFilterBy";
 import { ItemPage } from "../pages/ItemPage/ItemPage";
 
 export class AppContext {

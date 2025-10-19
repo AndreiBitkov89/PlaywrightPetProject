@@ -1,9 +1,9 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { PageWithItemsElements as el } from "./PageWithItemsElements";
 import { BasePage } from "../BasePage";
-import { ProductCard } from "../../commonPageElements/ProductCard/ProductCard";
-import { SortingDropdown } from "../../commonPageElements/SortingDropdown/SortingDropdown";
-import { DropdownItems } from "../../commonPageElements/constants/dropDownItems";
+import { ProductCard } from "../../../commonPageElements/ProductCard/ProductCard";
+import { SortingDropdown } from "../../../commonPageElements/SortingDropdown/SortingDropdown";
+import { DropdownItems } from "../../../commonPageElements/constants/dropDownItems";
 import { SortPrice } from "../../helpers/SortPrice";
 
 export class PageWithItems extends BasePage {
@@ -123,7 +123,7 @@ export class PageWithItems extends BasePage {
     const text = await this.page.locator(el.emptyListMessage).textContent();
     expect(text).not.toBeNull();
     expect(text).toContain(
-      "Sorry, we couldn't find what you were looking for.",
+      "Sorry, we couldn't find what you were looking for."
     );
   }
 
@@ -136,11 +136,11 @@ export class PageWithItems extends BasePage {
 
     const prices = await Promise.all(
       Array.from({ length: count }, (_, i) =>
-        new ProductCard(list.nth(i)).getPrice(),
-      ),
+        new ProductCard(list.nth(i)).getPrice()
+      )
     );
     return prices.filter(
-      (n): n is number => typeof n === "number" && !Number.isNaN(n),
+      (n): n is number => typeof n === "number" && !Number.isNaN(n)
     );
   }
 

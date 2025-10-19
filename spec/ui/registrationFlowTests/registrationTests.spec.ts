@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
-import { RegistrationPage } from "../../pages/RegistrationPage/RegistrationPage";
-import { User } from "../../valueObjects/NewUser";
+import { RegistrationPage } from "../../../pages/RegistrationPage/RegistrationPage";
+import { User } from "../../../src/valueObjects/NewUser";
 import { Errors } from "./constants/Errors";
 import { ErrorField } from "./constants/ErrorFields";
-import { RegistrationSteps } from "../../steps/RegistrationSteps";
-import { AppContext } from "../../steps/AppContext";
+import { RegistrationSteps } from "../../../src/steps/RegistrationSteps";
+import { AppContext } from "../../../src/steps/AppContext";
 import { faker } from "@faker-js/faker";
 
 test.describe("Registration flow", () => {
@@ -78,7 +78,7 @@ test.describe("Registration flow", () => {
     await steps.assertErrorText(ErrorField.Password, Errors.PASSWORD_REQUIRED);
     await steps.assertErrorText(
       ErrorField.ConfirmPassword,
-      Errors.CONFIRM_PASSWORD_REQUIRED,
+      Errors.CONFIRM_PASSWORD_REQUIRED
     );
   });
 
@@ -100,7 +100,7 @@ test.describe("Registration flow", () => {
     await steps.checkTerms();
     await steps.submit();
     expect(
-      await registrationPage.isValidationFailed(ErrorField.ConfirmPassword),
+      await registrationPage.isValidationFailed(ErrorField.ConfirmPassword)
     ).toBeTruthy();
   });
 });

@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import { AppContext } from "../../steps/AppContext";
+import { AppContext } from "../../../src/steps/AppContext";
 import { ItemCategories, CATEGORY_DATA } from "./constants/ItemCategories";
-import { PageWithItemsSteps } from "../../steps/PageWithItemsSteps";
-import { ItemSteps } from "../../steps/ItemSteps";
+import { PageWithItemsSteps } from "../../../src/steps/PageWithItemsSteps";
+import { ItemSteps } from "../../../src/steps/ItemSteps";
 
 test.describe("Page with items flow", () => {
   let itemPageSteps: PageWithItemsSteps;
@@ -34,7 +34,7 @@ test.describe("Page with items flow", () => {
     await itemSteps.changeQuantity(true);
   });
 
-   test("Open item page and increase quantity on 5", async () => {
+  test("Open item page and increase quantity on 5", async () => {
     await itemPageSteps.openPage(ItemCategories.Tops);
     await itemPageSteps.checkPageIsLoaded(
       CATEGORY_DATA.Tops.expectedTitleContains

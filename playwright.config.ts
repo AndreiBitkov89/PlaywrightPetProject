@@ -5,7 +5,7 @@ dotenv.config();
 
 export default defineConfig({
   workers: 4,
-  testDir: "./tests",
+  testDir: "./spec",
   timeout: 30 * 1000,
   retries: 1,
   reporter: [["line"], ["allure-playwright"], ["html"]],

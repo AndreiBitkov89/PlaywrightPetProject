@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
-import { User } from "../../valueObjects/NewUser";
-import { AppContext } from "../../steps/AppContext";
-import { LoginSteps } from "../../steps/LoginSteps";
 import { Errors } from "./constants/Errors";
 import { ErrorField } from "./constants/ErrorFields";
+import { LoginSteps } from "../../../src/steps/LoginSteps";
+import { User } from "../../../src/valueObjects/NewUser";
+import { AppContext } from "../../../src/steps/AppContext";
 
 test.describe("Login flow testing", () => {
   let user: User;
@@ -19,7 +19,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.openPage();
     await loginSteps.fillFieldsAndSubmit(
       process.env.LOGIN as string,
-      process.env.PASSWORD as string,
+      process.env.PASSWORD as string
     );
 
     expect(await loginSteps.assertSuccess()).toBeTruthy();
@@ -31,7 +31,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.fillFieldsAndSubmit(user.email, user.password);
 
     expect(
-      await loginSteps.assertErrorText(ErrorField.General, Errors.LOGIN_ERROR),
+      await loginSteps.assertErrorText(ErrorField.General, Errors.LOGIN_ERROR)
     );
   });
 
@@ -41,7 +41,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.fillFieldsAndSubmit(user.email, user.password);
 
     expect(
-      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_INVALID),
+      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_INVALID)
     );
   });
 
@@ -50,14 +50,14 @@ test.describe("Login flow testing", () => {
     await loginSteps.fillFieldsAndSubmit(null, null);
 
     expect(
-      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_REQUIRED),
+      await loginSteps.assertErrorText(ErrorField.Email, Errors.LOGIN_REQUIRED)
     );
 
     expect(
       await loginSteps.assertErrorText(
         ErrorField.Password,
-        Errors.PASSWORD_REQUIRED,
-      ),
+        Errors.PASSWORD_REQUIRED
+      )
     );
   });
 
