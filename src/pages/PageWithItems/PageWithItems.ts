@@ -1,9 +1,9 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { PageWithItemsElements as el } from "./PageWithItemsElements";
 import { BasePage } from "../BasePage";
-import { ProductCard } from "../../../commonPageElements/ProductCard/ProductCard";
-import { SortingDropdown } from "../../../commonPageElements/SortingDropdown/SortingDropdown";
-import { DropdownItems } from "../../../commonPageElements/constants/dropDownItems";
+import { ProductCard } from "../../commonPageElements/ProductCard/ProductCard";
+import { SortingDropdown } from "../../commonPageElements/SortingDropdown/SortingDropdown";
+import { DropdownItems } from "../../constants/common.const";
 import { SortPrice } from "../../helpers/SortPrice";
 
 export class PageWithItems extends BasePage {

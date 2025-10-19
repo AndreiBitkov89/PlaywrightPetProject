@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { LoginPageElements as el } from "./LoginPageElements";
 import { BasePage } from "../BasePage";
-import { ErrorField } from "../../../spec/ui/loginFlowTests/constants/ErrorFields";
-import { InputField } from "../../../elementsObjects/InputField";
+import { InputField } from "../../elementsObjects/InputField";
+import { ErrorFieldLogin } from "../../constants/common.const";
 
 export class LoginPage extends BasePage {
   private loginField: InputField;
@@ -47,11 +47,11 @@ export class LoginPage extends BasePage {
     }
   }
 
-  async getErrorText(field: ErrorField): Promise<string | null> {
-    const errorLocators: Record<ErrorField, string> = {
-      [ErrorField.Email]: el.errorLogin,
-      [ErrorField.Password]: el.errorPassword,
-      [ErrorField.General]: el.errorGeneralMessage,
+  async getErrorText(field: ErrorFieldLogin): Promise<string | null> {
+    const errorLocators: Record<ErrorFieldLogin, string> = {
+      [ErrorFieldLogin.Email]: el.errorLogin,
+      [ErrorFieldLogin.Password]: el.errorPassword,
+      [ErrorFieldLogin.General]: el.errorGeneralMessage,
     };
 
     const selector = errorLocators[field];

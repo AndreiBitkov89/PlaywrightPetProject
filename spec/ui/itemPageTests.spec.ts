@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import { AppContext } from "../../../src/steps/AppContext";
-import { ItemCategories, CATEGORY_DATA } from "./constants/ItemCategories";
-import { PageWithItemsSteps } from "../../../src/steps/PageWithItemsSteps";
-import { ItemSteps } from "../../../src/steps/ItemSteps";
+import { AppContext } from "../../src/steps/AppContext";
+import { ItemCategories, CATEGORY_DATA } from "../../src/constants/ItemCategories"
+import { PageWithItemsSteps } from "../../src/steps/PageWithItemsSteps";
+import { ItemSteps } from "../../src/steps/ItemSteps";
 
 test.describe("Page with items flow", () => {
   let itemPageSteps: PageWithItemsSteps;

@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { Errors } from "../../spec/ui/loginFlowTests/constants/Errors";
+import { LoginErrors } from "../../src/constants/common.const"
 import { AppContext } from "./AppContext";
-import { ErrorField } from "../../spec/ui/loginFlowTests/constants/ErrorFields";
+import { ErrorField } from "../../src/constants/common.const";
 
 export class LoginSteps {
   constructor(private ctx: AppContext) {}
@@ -32,7 +32,7 @@ export class LoginSteps {
     });
   }
 
-  async assertErrorText(errorField: ErrorField, errorText: Errors) {
+  async assertErrorText(errorField: ErrorField, errorText: LoginErrors) {
     expect(await this.ctx.loginPage.getErrorText(errorField)).toEqual(
       errorText
     );

@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { RegistrationElements as el } from "./RegistrationElements";
 import { User } from "../../valueObjects/NewUser";
 import { BasePage } from "../BasePage";
-import { ErrorField } from "../../../spec/ui/registrationFlowTests/constants/ErrorFields";
-import { InputField } from "../../../elementsObjects/InputField";
+import { ErrorFieldRegistration } from "../../constants/common.const";
+import { InputField } from "../../elementsObjects/InputField";
 
 export class RegistrationPage extends BasePage {
   private nameField: InputField;
@@ -104,13 +104,13 @@ export class RegistrationPage extends BasePage {
     }
   }
 
-  async getErrorText(field: ErrorField): Promise<string | null> {
-    const errorLocators: Record<ErrorField, string> = {
-      [ErrorField.Email]: el.errorEmail,
-      [ErrorField.FirstName]: el.errorName,
-      [ErrorField.Surname]: el.errorSurname,
-      [ErrorField.Password]: el.errorPassword,
-      [ErrorField.ConfirmPassword]: el.errorConfirmPassword,
+  async getErrorText(field: ErrorFieldRegistration): Promise<string | null> {
+    const errorLocators: Record<ErrorFieldRegistration, string> = {
+      [ErrorFieldRegistration.Email]: el.errorEmail,
+      [ErrorFieldRegistration.FirstName]: el.errorName,
+      [ErrorFieldRegistration.Surname]: el.errorSurname,
+      [ErrorFieldRegistration.Password]: el.errorPassword,
+      [ErrorFieldRegistration.ConfirmPassword]: el.errorConfirmPassword,
     };
 
     const selector = errorLocators[field];
@@ -118,13 +118,13 @@ export class RegistrationPage extends BasePage {
     return await this.page.locator(selector).textContent();
   }
 
-  async isValidationFailed(field: ErrorField): Promise<boolean> {
-    const fields: Record<ErrorField, InputField> = {
-      [ErrorField.Email]: this.emailField,
-      [ErrorField.FirstName]: this.nameField,
-      [ErrorField.Surname]: this.surnameField,
-      [ErrorField.Password]: this.passwordField,
-      [ErrorField.ConfirmPassword]: this.confirmPasswordField,
+  async isValidationFailed(field: ErrorFieldRegistration): Promise<boolean> {
+    const fields: Record<ErrorFieldRegistration, InputField> = {
+      [ErrorFieldRegistration.Email]: this.emailField,
+      [ErrorFieldRegistration.FirstName]: this.nameField,
+      [ErrorFieldRegistration.Surname]: this.surnameField,
+      [ErrorFieldRegistration.Password]: this.passwordField,
+      [ErrorFieldRegistration.ConfirmPassword]: this.confirmPasswordField,
     };
 
     return await fields[field].isInvalid();

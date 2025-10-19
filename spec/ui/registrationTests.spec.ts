@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
-import { RegistrationPage } from "../../../pages/RegistrationPage/RegistrationPage";
-import { User } from "../../../src/valueObjects/NewUser";
-import { Errors } from "./constants/Errors";
-import { ErrorField } from "./constants/ErrorFields";
-import { RegistrationSteps } from "../../../src/steps/RegistrationSteps";
-import { AppContext } from "../../../src/steps/AppContext";
+import { RegistrationPage } from "../../src/pages/RegistrationPage/RegistrationPage";
+import { User } from "../../src/valueObjects/NewUser";
+import { RegistrationErrors } from "../../src/constants/common.const";
+import { ErrorFieldRegistration } from "../../src/constants/common.const";
+import { RegistrationSteps } from "../../src/steps/RegistrationSteps";
+import { AppContext } from "../../src/steps/AppContext";
 import { faker } from "@faker-js/faker";
 
 test.describe("Registration flow", () => {
@@ -45,7 +45,10 @@ test.describe("Registration flow", () => {
     await steps.fillFields(user);
     await steps.checkTerms();
     await steps.submit();
-    await steps.assertErrorText(ErrorField.FirstName, Errors.NAME_REQUIRED);
+    await steps.assertErrorText(
+      ErrorFieldRegistration.FirstName,
+      RegistrationErrors.NAME_REQUIRED
+    );
   });
 
   test("Error after registration with empty surname", async ({}) => {
@@ -55,7 +58,10 @@ test.describe("Registration flow", () => {
     await steps.fillFields(user);
     await steps.checkTerms();
     await steps.submit();
-    await steps.assertErrorText(ErrorField.Surname, Errors.SURNAME_REQUIRED);
+    await steps.assertErrorText(
+      ErrorFieldRegistration.Surname,
+      RegistrationErrors.SURNAME_REQUIRED
+    );
   });
 
   test("Error after registration with empty email", async ({}) => {
@@ -65,7 +71,10 @@ test.describe("Registration flow", () => {
     await steps.fillFields(user);
     await steps.checkTerms();
     await steps.submit();
-    await steps.assertErrorText(ErrorField.Email, Errors.EMAIL_REQUIRED);
+    await steps.assertErrorText(
+      ErrorFieldRegistration.Email,
+      RegistrationErrors.EMAIL_REQUIRED
+    );
   });
 
   test("Error after registration with empty password", async ({}) => {
@@ -75,10 +84,13 @@ test.describe("Registration flow", () => {
     await steps.fillFields(user);
     await steps.checkTerms();
     await steps.submit();
-    await steps.assertErrorText(ErrorField.Password, Errors.PASSWORD_REQUIRED);
     await steps.assertErrorText(
-      ErrorField.ConfirmPassword,
-      Errors.CONFIRM_PASSWORD_REQUIRED
+      ErrorFieldRegistration.Password,
+      RegistrationErrors.PASSWORD_REQUIRED
+    );
+    await steps.assertErrorText(
+      ErrorFieldRegistration.ConfirmPassword,
+      RegistrationErrors.CONFIRM_PASSWORD_REQUIRED
     );
   });
 
@@ -89,7 +101,10 @@ test.describe("Registration flow", () => {
     await steps.fillFields(user);
     await steps.checkTerms();
     await steps.submit();
-    await steps.assertErrorText(ErrorField.Email, Errors.EMAIL_INVALID);
+    await steps.assertErrorText(
+      ErrorFieldRegistration.Email,
+      RegistrationErrors.EMAIL_INVALID
+    );
   });
 
   test("Error after confirmation registration with different password", async ({}) => {
@@ -100,7 +115,9 @@ test.describe("Registration flow", () => {
     await steps.checkTerms();
     await steps.submit();
     expect(
-      await registrationPage.isValidationFailed(ErrorField.ConfirmPassword)
+      await registrationPage.isValidationFailed(
+        ErrorFieldRegistration.ConfirmPassword
+      )
     ).toBeTruthy();
   });
 });

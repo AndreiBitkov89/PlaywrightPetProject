@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { DropdownElements as el } from "./DropdownElements";
-import { DropdownItems } from "../constants/dropDownItems";
+import { DropdownItems } from "../../constants/common.const";
 
 export class SortingDropdown {
   private page: Page;
