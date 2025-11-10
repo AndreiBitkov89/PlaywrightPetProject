@@ -1,41 +1,37 @@
-import { Page } from "@playwright/test";
+import {Locator} from "@playwright/test";
 
 export class InputField {
   constructor(
-    private readonly page: Page,
-    private readonly inputSelector: string,
+    private readonly inputSelector: Locator,
   ) {}
 
   async fill(value: string): Promise<void> {
-    await this.page.fill(this.inputSelector, value);
+    await this.inputSelector.fill(value);
   }
 
   async clear(): Promise<void> {
-    await this.page.fill(this.inputSelector, "");
+    await this.inputSelector.clear();
   }
 
   async isInvalid(): Promise<boolean> {
-    const input = this.page.locator(this.inputSelector);
-    const ariaInvalid = await input.getAttribute("aria-invalid");
+    const ariaInvalid = await this.inputSelector.getAttribute("aria-invalid");
     if (ariaInvalid === "true") return true;
 
-    const wrapper = input.locator("..");
+    const wrapper = this.inputSelector.locator("..");
     const invalidIcon = wrapper.locator(".InputValidState__invalid");
     return await invalidIcon.isVisible();
   }
 
   async isValid(): Promise<boolean> {
-    const input = this.page.locator(this.inputSelector);
-    const ariaInvalid = await input.getAttribute("aria-invalid");
+    const ariaInvalid = await this.inputSelector.getAttribute("aria-invalid");
     if (ariaInvalid === "false") return true;
 
-    const wrapper = input.locator("..");
+    const wrapper = this.inputSelector.locator("..");
     const validIcon = wrapper.locator(".InputValidState__valid");
     return await validIcon.isVisible();
   }
 
   async isVisible(): Promise<boolean> {
-    await this.page.waitForSelector(this.inputSelector, { timeout: 3000 });
-    return await this.page.locator(this.inputSelector).isVisible();
+    return await this.inputSelector.isVisible({timeout: 5000});
   }
 }

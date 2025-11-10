@@ -1,26 +1,28 @@
-import { Page } from "@playwright/test";
-import { MyFavoritesElements as el } from "./MyFavoritesElements";
-import { BasePage } from "../BasePage";
+import {Page} from "@playwright/test";
+import {MyFavoritesLocators} from "./MyFavorites.locators";
+import {BasePage} from "../BasePage";
 
 export class MyFavorites extends BasePage {
-  constructor(page: Page) {
-    super(page);
-  }
+    readonly el: MyFavoritesLocators;
 
-  async goto(): Promise<void> {
-    await this.page.goto("/de/en/my-favorites");
-  }
+    constructor(page: Page) {
+        super(page);
+        this.el = new MyFavoritesLocators(page);
+    }
 
-  async isLoaded(): Promise<boolean> {
-    await this.page.waitForSelector(el.title);
-    return await this.page.locator(el.title).isVisible();
-  }
+    async goto(): Promise<void> {
+        await this.page.goto("/de/en/my-favorites");
+    }
 
-  async isItemDisplayed(itemTitle: string): Promise<boolean> {
-    const xpath = `xpath=//div//*[contains(text(), '${itemTitle}')]`;
+    async isLoaded(): Promise<boolean> {
+        return await this.el.title.isVisible();
+    }
 
-    await this.page.locator(xpath).waitFor({ state: "visible" });
+    async isItemDisplayed(itemTitle: string): Promise<boolean> {
+        const xpath = `xpath=//div//*[contains(text(), '${itemTitle}')]`;
 
-    return await this.page.locator(xpath).isVisible();
-  }
+        await this.page.locator(xpath).waitFor({state: "visible"});
+
+        return await this.page.locator(xpath).isVisible();
+    }
 }
