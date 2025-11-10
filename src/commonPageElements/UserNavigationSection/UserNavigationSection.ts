@@ -1,18 +1,17 @@
 import { Page } from "@playwright/test";
-import { UserNavigationSectionElements as el } from "./UserNavigationSectionElements";
 
 export class UserNavigationSection {
   constructor(private page: Page) {}
 
   public async isAccountAvailable(): Promise<boolean> {
-    return await this.page.locator(el.accountLink).isVisible();
+    return await this.page.getByTestId("account-menu-button").isVisible();
   }
   public async isSignInAvailable(): Promise<boolean> {
-    return await this.page.locator(el.signInLink).isVisible();
+    return await this.page.getByTestId("account-sign-in-link").isVisible();
   }
 
   public async goToFavorites(): Promise<this> {
-    await this.page.locator(el.favorites).click();
+    await this.page.locator("a[name='Favorites']").click();
     return this;
   }
 }
