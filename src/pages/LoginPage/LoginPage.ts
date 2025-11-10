@@ -1,5 +1,5 @@
-import { Page } from "@playwright/test";
-import { LoginPageElements as el } from "./LoginPageElements";
+import {Locator, Page} from "@playwright/test";
+import { LoginPageLocators } from "./LoginPage.locators";
 import { BasePage } from "../BasePage";
 import { InputField } from "../../elementsObjects/InputField";
 import { ErrorFieldLogin } from "../../constants/common.const";
@@ -7,11 +7,13 @@ import { ErrorFieldLogin } from "../../constants/common.const";
 export class LoginPage extends BasePage {
   private loginField: InputField;
   private passwordField: InputField;
+  readonly el:LoginPageLocators
 
   constructor(page: Page) {
     super(page);
-    this.loginField = new InputField(page, el.login);
-    this.passwordField = new InputField(page, el.password);
+    this.el = new LoginPageLocators(page);
+    this.loginField = new InputField(this.el.login);
+    this.passwordField = new InputField(this.el.password);
   }
 
   async goto(): Promise<void> {
@@ -33,13 +35,12 @@ export class LoginPage extends BasePage {
   async fillAllFields(email: string | null, password: string | null) {
     await this.fillLogin(email);
     await this.fillPassword(password);
-    await this.page.click(el.submitLogin);
+    await this.el.submitLogin.click();
   }
 
   async isLoginSuccessful(): Promise<boolean> {
     try {
-      await this.page
-        .locator(el.login)
+      await this.el.login
         .waitFor({ state: "hidden", timeout: 5000 });
       return true;
     } catch {
@@ -48,23 +49,22 @@ export class LoginPage extends BasePage {
   }
 
   async getErrorText(field: ErrorFieldLogin): Promise<string | null> {
-    const errorLocators: Record<ErrorFieldLogin, string> = {
-      [ErrorFieldLogin.Email]: el.errorLogin,
-      [ErrorFieldLogin.Password]: el.errorPassword,
-      [ErrorFieldLogin.General]: el.errorGeneralMessage,
+    const errorLocators: Record<ErrorFieldLogin, Locator> = {
+      [ErrorFieldLogin.Email]: this.el.errorLogin,
+      [ErrorFieldLogin.Password]: this.el.errorPassword,
+      [ErrorFieldLogin.General]: this.el.errorGeneralMessage,
     };
 
     const selector = errorLocators[field];
-    await this.page.waitForSelector(selector);
-    return await this.page.locator(selector).textContent();
+    return await selector.textContent();
   }
 
   async goToForgotPass() {
-    await this.page.locator(el.forgotPassLink).click();
+    await this.el.forgotPassLink.click();
     await this.page.waitForURL("/de/en/account/forgot-password");
   }
 
   async goToRegistrationFromSignIn() {
-    await this.page.click(el.createAccountLink);
+    await this.el.createAccountLink.click();
   }
 }

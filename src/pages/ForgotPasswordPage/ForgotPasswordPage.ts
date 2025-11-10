@@ -1,20 +1,22 @@
-import { BasePage } from "../BasePage";
-import { Page } from "@playwright/test";
-import { ForgotPasswordElements as el } from "./ForgotPasswordElements";
+import {BasePage} from "../BasePage";
+import {Page} from "@playwright/test";
+import {ForgotPasswordLocators} from "./ForgotPassword.locators";
 
 export class ForgotPasswordPage extends BasePage {
-  constructor(page: Page) {
-    super(page);
-  }
 
-  async isLoaded(): Promise<boolean> {
-    await this.page
-      .locator(el.cancelButton)
-      .waitFor({ state: "visible", timeout: 4000 });
-    await this.page
-      .locator(el.sendEmailButton)
-      .waitFor({ state: "visible", timeout: 4000 });
+    readonly el: ForgotPasswordLocators
 
-    return this.page.locator(el.cancelButton).isVisible();
-  }
+    constructor(page: Page) {
+        super(page);
+        this.el = new ForgotPasswordLocators(page);
+    }
+
+    async isLoaded(): Promise<boolean> {
+        await this.el.cancelButton
+            .waitFor({state: "visible", timeout: 4000});
+        await this.el.sendEmailButton
+            .waitFor({state: "visible", timeout: 4000});
+
+        return this.el.cancelButton.isVisible();
+    }
 }

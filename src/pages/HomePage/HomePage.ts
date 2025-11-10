@@ -1,10 +1,13 @@
 import { Page } from "@playwright/test";
-import { HomePageElements as el } from "./HomePageElements";
 import { BasePage } from "../BasePage";
+import { HomePageLocators } from './HomePage.locators';
 
 export class HomePage extends BasePage {
+    readonly el: HomePageLocators;
+
   constructor(page: Page) {
     super(page);
+      this.el = new HomePageLocators(page);
   }
 
   async goto(): Promise<HomePage> {
@@ -15,6 +18,6 @@ export class HomePage extends BasePage {
 
   async isLoaded(): Promise<boolean> {
     await this.closePopupsIfExists();
-    return await this.page.locator(el.main).isVisible();
+    return await this.el.main.isVisible();
   }
 }

@@ -1,9 +1,7 @@
 import { User } from "../valueObjects/NewUser";
-import { Errors } from "../../spec/ui//registrationFlowTests/constants/Errors";
-import { ErrorField } from "../../spec/ui/registrationFlowTests/constants/ErrorFields";
 import { test, expect } from "@playwright/test";
 import { AppContext } from "./AppContext";
-import { Store } from "../../spec/ui/registrationFlowTests/constants/Store";
+import {RegistrationErrors, ErrorFieldRegistration, Store} from "../constants/common.const";
 
 export class RegistrationSteps {
   constructor(private ctx: AppContext) {}
@@ -64,7 +62,7 @@ export class RegistrationSteps {
     });
   }
 
-  async assertErrorText(errorField: ErrorField, errorText: Errors) {
+  async assertErrorText(errorField: ErrorFieldRegistration, errorText: RegistrationErrors) {
     expect(await this.ctx.registrationPage.getErrorText(errorField)).toEqual(
       errorText
     );
