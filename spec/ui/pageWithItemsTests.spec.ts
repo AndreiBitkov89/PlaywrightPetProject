@@ -1,19 +1,16 @@
-import { test } from "@playwright/test";
-import { AppContext } from "../../src/steps/AppContext";
+import { test } from '../../src/fixtures/fixture'
 import {
   ItemCategories,
   CATEGORY_DATA,
 } from "../../src/constants/ItemCategories";
 import { PageWithItemsSteps } from "../../src/steps/PageWithItemsSteps";
-import { DropdownItems } from "../../src/constants/common.const";
+import {DropdownItems, priceRanges} from "../../src/constants/common.const";
 
 test.describe("Page with items flow", () => {
   let steps: PageWithItemsSteps;
-  let appContext: AppContext;
 
-  test.beforeEach(async ({ page }) => {
-    appContext = new AppContext(page);
-    steps = new PageWithItemsSteps(appContext);
+  test.beforeEach(async ({ app }) => {
+    steps = new PageWithItemsSteps(app);
   });
 
   test("Open page with items and check loading and title", async () => {
@@ -66,7 +63,7 @@ test.describe("Page with items flow", () => {
     await steps.checkPageIsLoaded(
       CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
-    await steps.applyPriceFilterAndCheckItems(40, 100);
+    await steps.applyPriceFilterAndCheckItems(priceRanges.correct);
   });
 
   test("Apply Filter and get empty list", async () => {

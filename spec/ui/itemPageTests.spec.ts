@@ -1,5 +1,4 @@
-import { test } from "@playwright/test";
-import { AppContext } from "../../src/steps/AppContext";
+import { test } from '../../src/fixtures/fixture'
 import { ItemCategories, CATEGORY_DATA } from "../../src/constants/ItemCategories"
 import { PageWithItemsSteps } from "../../src/steps/PageWithItemsSteps";
 import { ItemSteps } from "../../src/steps/ItemSteps";
@@ -7,12 +6,10 @@ import { ItemSteps } from "../../src/steps/ItemSteps";
 test.describe("Page with items flow", () => {
   let itemPageSteps: PageWithItemsSteps;
   let itemSteps: ItemSteps;
-  let appContext: AppContext;
 
-  test.beforeEach(async ({ page }) => {
-    appContext = new AppContext(page);
-    itemPageSteps = new PageWithItemsSteps(appContext);
-    itemSteps = new ItemSteps(appContext);
+  test.beforeEach(async ({ app }) => {
+    itemPageSteps = new PageWithItemsSteps(app);
+    itemSteps = new ItemSteps(app);
   });
 
   test("Open item page and check title and price", async () => {

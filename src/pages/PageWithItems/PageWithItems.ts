@@ -5,6 +5,7 @@ import {ProductCard} from "../../commonPageElements/ProductCard/ProductCard";
 import {SortingDropdown} from "../../commonPageElements/SortingDropdown/SortingDropdown";
 import {DropdownItems} from "../../constants/common.const";
 import {SortPrice} from "../../helpers/SortPrice";
+import {PriceRange} from "../../interfaces/testData";
 
 export class PageWithItems extends BasePage {
     readonly el: PageWithItemsLocators;
@@ -107,11 +108,11 @@ export class PageWithItems extends BasePage {
         expect(this.sp.isDesc(arr)).toBeTruthy();
     }
 
-    async checkPricesRange(min: number, max: number): Promise<boolean> {
+    async checkPricesRange(priceRange: PriceRange): Promise<boolean> {
         await this.waitForFirstCard();
         await this.loadAllCards();
         const arr = await this.getAllPrices();
-        return arr.every((price) => price >= min && price <= max);
+        return arr.every((price) => price >= priceRange.min && price <= priceRange.max);
     }
 
     async checkEmptyList(): Promise<boolean> {

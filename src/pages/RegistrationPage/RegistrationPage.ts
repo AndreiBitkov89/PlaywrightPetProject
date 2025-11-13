@@ -7,11 +7,11 @@ import {InputField} from "../../elementsObjects/InputField";
 
 export class RegistrationPage extends BasePage {
     readonly el: RegistrationLocators;
-    private nameField: InputField;
-    private surnameField: InputField;
-    private emailField: InputField;
-    private passwordField: InputField;
-    private confirmPasswordField: InputField;
+    private readonly nameField: InputField;
+    private readonly surnameField: InputField;
+    private readonly emailField: InputField;
+    private readonly passwordField: InputField;
+    private readonly confirmPasswordField: InputField;
 
     constructor(page: Page) {
         super(page);
@@ -30,7 +30,7 @@ export class RegistrationPage extends BasePage {
     async isLoaded(): Promise<boolean> {
         return (
             (await this.nameField.isVisible()) &&
-            (await this.el.submitButton.isVisible({timeout: 3000}))
+            (await this.el.submitButton.isVisible({timeout: 5000}))
         );
     }
 
