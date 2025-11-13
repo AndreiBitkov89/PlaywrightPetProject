@@ -1,11 +1,12 @@
 import { test } from "@playwright/test";
 import { AppContext } from "./AppContext";
 import { ProductCard } from "../commonPageElements/ProductCard/ProductCard";
-import { DropdownItems } from "../constants/common.const";
+import {DropdownItems, priceRanges} from "../constants/common.const";
 import {
   ItemCategories,
   CATEGORY_DATA,
 } from "../../src/constants/ItemCategories";
+import {PriceRange} from "../interfaces/testData";
 
 export class PageWithItemsSteps {
   constructor(private ctx: AppContext) {}
@@ -66,13 +67,13 @@ export class PageWithItemsSteps {
     });
   }
 
-  async applyPriceFilterAndCheckItems(min: number, max: number) {
-    await this.ctx.sidebarFilter.applyPriceFilter(min, max);
-    await this.ctx.pageWithItems.checkPricesRange(min, max);
+  async applyPriceFilterAndCheckItems(priceRange: PriceRange): Promise<void> {
+    await this.ctx.sidebarFilter.applyPriceFilter(priceRange);
+    await this.ctx.pageWithItems.checkPricesRange(priceRange);
   }
 
   async getEmptyListAndCheckMessage() {
-    await this.ctx.sidebarFilter.applyPriceFilter(1000, 2000);
+    await this.ctx.sidebarFilter.applyPriceFilter(priceRanges.empty);
     await this.ctx.pageWithItems.checkEmptyList();
     await this.ctx.pageWithItems.getEmptyListMessage();
   }

@@ -1,5 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { FilterLocators } from "./Filter.locators";
+import {PriceRange} from "../../interfaces/testData";
 
 export class SidebarFilterBy {
     readonly el: FilterLocators;
@@ -9,17 +10,17 @@ export class SidebarFilterBy {
     this.el = new FilterLocators(this.page);
   }
 
-  async applyPriceFilter(min: number | null, max: number | null) {
+  async applyPriceFilter(priceRange: PriceRange): Promise<void>  {
     await this.el.priceFilter.scrollIntoViewIfNeeded();
 
     await expect(this.el.minPrice).toBeVisible();
 
-    if (min !== null) {
-      await this.el.minPrice.fill(min.toString());
+    if (priceRange.min !== null) {
+      await this.el.minPrice.fill(priceRange.min.toString());
     }
 
-    if (max !== null) {
-      await this.el.maxPrice.fill(max.toString());
+    if (priceRange.max !== null) {
+      await this.el.maxPrice.fill(priceRange.max.toString());
     }
 
     await this.el.updatePrice.click();

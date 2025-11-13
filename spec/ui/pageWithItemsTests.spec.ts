@@ -4,7 +4,7 @@ import {
   CATEGORY_DATA,
 } from "../../src/constants/ItemCategories";
 import { PageWithItemsSteps } from "../../src/steps/PageWithItemsSteps";
-import { DropdownItems } from "../../src/constants/common.const";
+import {DropdownItems, priceRanges} from "../../src/constants/common.const";
 
 test.describe("Page with items flow", () => {
   let steps: PageWithItemsSteps;
@@ -63,7 +63,7 @@ test.describe("Page with items flow", () => {
     await steps.checkPageIsLoaded(
       CATEGORY_DATA.FlareBootcutJeans.expectedTitleContains
     );
-    await steps.applyPriceFilterAndCheckItems(40, 100);
+    await steps.applyPriceFilterAndCheckItems(priceRanges.correct);
   });
 
   test("Apply Filter and get empty list", async () => {

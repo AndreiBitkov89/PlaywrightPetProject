@@ -1,3 +1,5 @@
+import {PriceRange} from "../interfaces/testData";
+
 export enum ErrorFieldRegistration {
   Email = "email",
   Password = "password",
@@ -39,3 +41,8 @@ export enum DropdownItems {
   PriceLowHigh = "Price (low - high)",
   PriceHighLow = "Price (high - low)",
 }
+
+export const priceRanges: Record<string, PriceRange> = {
+    empty: { min: 1000, max: 2000 },
+    correct: { min: 40, max: 100 },
+};
