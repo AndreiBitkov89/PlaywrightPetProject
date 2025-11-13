@@ -1,18 +1,15 @@
-import { test, expect } from "@playwright/test";
+import { test,expect } from '../../src/fixtures/fixture'
 import { LoginErrors } from "../../src/constants/common.const";
 import { ErrorFieldLogin } from "../../src/constants/common.const";
 import { LoginSteps } from "../../src/steps/LoginSteps";
 import { User } from "../../src/valueObjects/NewUser";
-import { AppContext } from "../../src/steps/AppContext";
 
 test.describe("Login flow testing", () => {
   let user: User;
   let loginSteps: LoginSteps;
-  let appContext: AppContext;
 
-  test.beforeEach(async ({ page }) => {
-    appContext = new AppContext(page);
-    loginSteps = new LoginSteps(appContext);
+  test.beforeEach(async ({ app }) => {
+    loginSteps = new LoginSteps(app);
   });
 
   test("Directly open login page and login user", async () => {

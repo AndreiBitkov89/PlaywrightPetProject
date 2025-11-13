@@ -1,5 +1,4 @@
-import { test } from "@playwright/test";
-import { AppContext } from "../../src/steps/AppContext";
+import { test } from '../../src/fixtures/fixture'
 import {
   ItemCategories,
   CATEGORY_DATA,
@@ -9,11 +8,9 @@ import { DropdownItems } from "../../src/constants/common.const";
 
 test.describe("Page with items flow", () => {
   let steps: PageWithItemsSteps;
-  let appContext: AppContext;
 
-  test.beforeEach(async ({ page }) => {
-    appContext = new AppContext(page);
-    steps = new PageWithItemsSteps(appContext);
+  test.beforeEach(async ({ app }) => {
+    steps = new PageWithItemsSteps(app);
   });
 
   test("Open page with items and check loading and title", async () => {
