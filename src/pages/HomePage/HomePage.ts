@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "../BasePage";
-import { HomePageLocators } from './HomePage.locators';
+import { HomePageLocators } from "./HomePage.locators";
 
 export class HomePage extends BasePage {
-    readonly el: HomePageLocators;
+  readonly el: HomePageLocators;
 
   constructor(page: Page) {
     super(page);
-      this.el = new HomePageLocators(page);
+    this.el = new HomePageLocators(page);
   }
 
   async goto(): Promise<HomePage> {

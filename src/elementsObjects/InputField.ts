@@ -1,9 +1,7 @@
-import {Locator} from "@playwright/test";
+import { Locator } from "@playwright/test";
 
 export class InputField {
-  constructor(
-    private readonly inputSelector: Locator,
-  ) {}
+  constructor(private readonly inputSelector: Locator) {}
 
   async fill(value: string): Promise<void> {
     await this.inputSelector.fill(value);
@@ -32,6 +30,6 @@ export class InputField {
   }
 
   async isVisible(): Promise<boolean> {
-    return await this.inputSelector.isVisible({timeout: 5000});
+    return await this.inputSelector.isVisible({ timeout: 5000 });
   }
 }

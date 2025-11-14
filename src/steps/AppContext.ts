@@ -8,6 +8,7 @@ import { PageWithItems } from "../pages/PageWithItems/PageWithItems";
 import { MyFavorites } from "../pages/MyFavoritesPage/MyFavoritesPage";
 import { SidebarFilterBy } from "../commonPageElements/SidebarFilter/SidebarFilterBy";
 import { ItemPage } from "../pages/ItemPage/ItemPage";
+import { MiniCart } from "../commonPageElements/MiniCart/MiniCart";
 
 export class AppContext {
   public loginPage: LoginPage;
@@ -19,6 +20,7 @@ export class AppContext {
   public myFavorites: MyFavorites;
   public sidebarFilter: SidebarFilterBy;
   public itemPage: ItemPage;
+  public miniCart: MiniCart;
 
   constructor(page: Page) {
     this.loginPage = new LoginPage(page);
@@ -30,5 +32,6 @@ export class AppContext {
     this.myFavorites = new MyFavorites(page);
     this.sidebarFilter = new SidebarFilterBy(page);
     this.itemPage = new ItemPage(page);
+    this.miniCart = new MiniCart(page);
   }
 }

@@ -1,16 +1,16 @@
 import { Page, expect } from "@playwright/test";
 import { FilterLocators } from "./Filter.locators";
-import {PriceRange} from "../../interfaces/testData";
+import { PriceRange } from "../../interfaces/testData";
 
 export class SidebarFilterBy {
-    readonly el: FilterLocators;
+  readonly el: FilterLocators;
 
   constructor(private readonly page: Page) {
     this.page = page;
     this.el = new FilterLocators(this.page);
   }
 
-  async applyPriceFilter(priceRange: PriceRange): Promise<void>  {
+  async applyPriceFilter(priceRange: PriceRange): Promise<void> {
     await this.el.priceFilter.scrollIntoViewIfNeeded();
 
     await expect(this.el.minPrice).toBeVisible();

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { LoginErrors } from "../constants/common.const"
+import { LoginErrors } from "../constants/common.const";
 import { AppContext } from "./AppContext";
 import { ErrorFieldLogin } from "../constants/common.const";
 
@@ -15,7 +15,7 @@ export class LoginSteps {
 
   async fillFieldsAndSubmit(
     login: string | null,
-    password: string | null
+    password: string | null,
   ): Promise<this> {
     await test.step("Fill all required fields", async () => {
       await this.ctx.loginPage.fillAllFields(login, password);
@@ -34,7 +34,7 @@ export class LoginSteps {
 
   async assertErrorText(errorField: ErrorFieldLogin, errorText: LoginErrors) {
     expect(await this.ctx.loginPage.getErrorText(errorField)).toEqual(
-      errorText
+      errorText,
     );
   }
 

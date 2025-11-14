@@ -1,7 +1,11 @@
 import { User } from "../valueObjects/NewUser";
 import { test, expect } from "@playwright/test";
 import { AppContext } from "./AppContext";
-import {RegistrationErrors, ErrorFieldRegistration, Store} from "../constants/common.const";
+import {
+  RegistrationErrors,
+  ErrorFieldRegistration,
+  Store,
+} from "../constants/common.const";
 
 export class RegistrationSteps {
   constructor(private ctx: AppContext) {}
@@ -15,12 +19,12 @@ export class RegistrationSteps {
 
   async fillFields(
     user: User,
-    wrongPassword?: string
+    wrongPassword?: string,
   ): Promise<RegistrationSteps> {
     await test.step("Fill all required fields", async () => {
       await this.ctx.registrationPage.fillAllRequiredFields(
         user,
-        wrongPassword
+        wrongPassword,
       );
     });
     return this;
@@ -62,9 +66,12 @@ export class RegistrationSteps {
     });
   }
 
-  async assertErrorText(errorField: ErrorFieldRegistration, errorText: RegistrationErrors) {
+  async assertErrorText(
+    errorField: ErrorFieldRegistration,
+    errorText: RegistrationErrors,
+  ) {
     expect(await this.ctx.registrationPage.getErrorText(errorField)).toEqual(
-      errorText
+      errorText,
     );
   }
 }

@@ -1,5 +1,7 @@
 import { expect } from "@playwright/test";
 import { AppContext } from "./AppContext";
+import { buttonTitles } from "../constants/ItemPageConstants";
+import { Products } from "../constants/Products";
 
 export class ItemSteps {
   constructor(private ctx: AppContext) {}
@@ -16,5 +18,26 @@ export class ItemSteps {
 
   async changeQuantity(increase: boolean, steps: number = 1) {
     await this.ctx.itemPage.changeQuantityAndCheckChanges(increase, steps);
+  }
+
+  async gotItemPageWithUrl(product: Products) {
+    await this.ctx.itemPage.gotToItemPageWithUrl(product);
+  }
+
+  async addItemToCard() {
+    let buttonText = await this.ctx.itemPage.addToCartText();
+    expect(buttonText).toContain(buttonTitles.chooseSize);
+    await this.ctx.itemPage.selectSize(0);
+    buttonText = await this.ctx.itemPage.addToCartText();
+    expect(buttonText).toContain(buttonTitles.add);
+    await this.ctx.itemPage.addToCart();
+    expect(await this.ctx.miniCart.isMiniCartDisplayed()).toBe(true);
+  }
+
+  async assertItemAddedInMiniCart() {
+    const title = await this.ctx.itemPage.getItemTitle();
+    if (title) {
+      expect(await this.ctx.miniCart.isItemInCart(title)).toBe(true);
+    }
   }
 }

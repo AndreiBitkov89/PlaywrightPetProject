@@ -1,4 +1,4 @@
-export interface PriceRange{
-    min: number;
-    max: number;
+export interface PriceRange {
+  min: number;
+  max: number;
 }

@@ -1,4 +1,4 @@
-import {Locator, Page} from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { LoginPageLocators } from "./LoginPage.locators";
 import { BasePage } from "../BasePage";
 import { InputField } from "../../elementsObjects/InputField";
@@ -7,7 +7,7 @@ import { ErrorFieldLogin } from "../../constants/common.const";
 export class LoginPage extends BasePage {
   private loginField: InputField;
   private passwordField: InputField;
-  readonly el:LoginPageLocators
+  readonly el: LoginPageLocators;
 
   constructor(page: Page) {
     super(page);
@@ -40,8 +40,7 @@ export class LoginPage extends BasePage {
 
   async isLoginSuccessful(): Promise<boolean> {
     try {
-      await this.el.login
-        .waitFor({ state: "hidden", timeout: 5000 });
+      await this.el.login.waitFor({ state: "hidden", timeout: 5000 });
       return true;
     } catch {
       return false;

@@ -3,20 +3,19 @@ import { SortPrice } from "../../helpers/SortPrice";
 
 export class ProductCard {
   private readonly sp = new SortPrice();
-    readonly favoriteButton: string;
-    readonly title: string;
-    readonly originalPrice: string;
-    readonly currentPrice: string;
-    readonly image: string;
+  readonly favoriteButton: string;
+  readonly title: string;
+  readonly originalPrice: string;
+  readonly currentPrice: string;
+  readonly image: string;
 
-
-    constructor(private readonly root: Locator) {
-        this.favoriteButton = "button[aria-label='Favorites']";
-        this.title = '[data-testid="product-card-title"]';
-        this.originalPrice = '[data-testid="originalPrice"]';
-        this.currentPrice = "[data-testid='currentPrice']";
-        this.image = '[data-testid$="-image-link"]';
-    }
+  constructor(private readonly root: Locator) {
+    this.favoriteButton = "button[aria-label='Favorites']";
+    this.title = '[data-testid="product-card-title"]';
+    this.originalPrice = '[data-testid="originalPrice"]';
+    this.currentPrice = "[data-testid='currentPrice']";
+    this.image = '[data-testid$="-image-link"]';
+  }
 
   get getTitle(): Locator {
     return this.root.locator(this.title);

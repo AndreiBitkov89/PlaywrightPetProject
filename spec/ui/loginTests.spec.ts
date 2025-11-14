@@ -1,4 +1,4 @@
-import { test,expect } from '../../src/fixtures/fixture'
+import { test, expect } from "../../src/fixtures/fixture";
 import { LoginErrors } from "../../src/constants/common.const";
 import { ErrorFieldLogin } from "../../src/constants/common.const";
 import { LoginSteps } from "../../src/steps/LoginSteps";
@@ -16,7 +16,7 @@ test.describe("Login flow testing", () => {
     await loginSteps.openPage();
     await loginSteps.fillFieldsAndSubmit(
       process.env.LOGIN as string,
-      process.env.PASSWORD as string
+      process.env.PASSWORD as string,
     );
 
     expect(await loginSteps.assertSuccess()).toBeTruthy();
@@ -30,8 +30,8 @@ test.describe("Login flow testing", () => {
     expect(
       await loginSteps.assertErrorText(
         ErrorFieldLogin.General,
-        LoginErrors.LOGIN_ERROR
-      )
+        LoginErrors.LOGIN_ERROR,
+      ),
     );
   });
 
@@ -43,8 +43,8 @@ test.describe("Login flow testing", () => {
     expect(
       await loginSteps.assertErrorText(
         ErrorFieldLogin.Email,
-        LoginErrors.LOGIN_INVALID
-      )
+        LoginErrors.LOGIN_INVALID,
+      ),
     );
   });
 
@@ -55,15 +55,15 @@ test.describe("Login flow testing", () => {
     expect(
       await loginSteps.assertErrorText(
         ErrorFieldLogin.Email,
-        LoginErrors.LOGIN_REQUIRED
-      )
+        LoginErrors.LOGIN_REQUIRED,
+      ),
     );
 
     expect(
       await loginSteps.assertErrorText(
         ErrorFieldLogin.Password,
-        LoginErrors.PASSWORD_REQUIRED
-      )
+        LoginErrors.PASSWORD_REQUIRED,
+      ),
     );
   });
 

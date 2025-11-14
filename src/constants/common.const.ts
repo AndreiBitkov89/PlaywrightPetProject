@@ -1,4 +1,4 @@
-import {PriceRange} from "../interfaces/testData";
+import { PriceRange } from "../interfaces/testData";
 
 export enum ErrorFieldRegistration {
   Email = "email",
@@ -43,6 +43,6 @@ export enum DropdownItems {
 }
 
 export const priceRanges: Record<string, PriceRange> = {
-    empty: { min: 1000, max: 2000 },
-    correct: { min: 40, max: 100 },
+  empty: { min: 1000, max: 2000 },
+  correct: { min: 40, max: 100 },
 };
