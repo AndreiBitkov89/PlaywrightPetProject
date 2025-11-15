@@ -5,7 +5,7 @@ import { DropdownItems, priceRanges } from "../constants/common.const";
 import {
   ItemCategories,
   CATEGORY_DATA,
-} from "../../src/constants/ItemCategories";
+} from "../constants/ItemCategories";
 import { PriceRange } from "../interfaces/testData";
 
 export class PageWithItemsSteps {

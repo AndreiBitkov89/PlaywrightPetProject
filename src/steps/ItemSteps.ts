@@ -6,11 +6,10 @@ import { Products } from "../constants/Products";
 export class ItemSteps {
   constructor(private ctx: AppContext) {}
 
-  async checkThatCorrectItemPageIsOpened(index: number) {
+  async openItemPageWithTitleAndPriceAssert(index: number) {
     const originalPrice = await this.ctx.pageWithItems.getOriginalPrice(index);
     const title = await this.ctx.pageWithItems.getItemName(index);
     await this.ctx.pageWithItems.goToItem(index);
-
     await this.ctx.itemPage.isLoaded();
     expect(await this.ctx.itemPage.getOriginalPrice()).toEqual(originalPrice);
     expect(await this.ctx.itemPage.getItemTitle()).toEqual(title);
@@ -18,6 +17,11 @@ export class ItemSteps {
 
   async changeQuantity(increase: boolean, steps: number = 1) {
     await this.ctx.itemPage.changeQuantityAndCheckChanges(increase, steps);
+  }
+
+  async assertQuantity(expectedAmount: number) {
+      const actualAmount = await this.ctx.itemPage.getQuantity();
+      expect(actualAmount).toEqual(expectedAmount);
   }
 
   async gotItemPageWithUrl(product: Products) {

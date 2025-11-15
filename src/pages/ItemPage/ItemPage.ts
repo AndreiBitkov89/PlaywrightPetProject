@@ -40,6 +40,7 @@ export class ItemPage extends BasePage {
     } else return null;
   }
 
+
   async changeQuantityAndCheckChanges(increase: boolean, steps: number = 1) {
     const quantityInput = this.el.quantityInput;
     const button = increase
@@ -59,7 +60,7 @@ export class ItemPage extends BasePage {
       .toBe(increase ? initialQuantity + steps : initialQuantity - steps);
   }
 
-  private async getQuantity(): Promise<number> {
+  public async getQuantity(): Promise<number> {
     const input = this.el.quantityInput;
     const value = await input.inputValue();
 
