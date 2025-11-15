@@ -43,7 +43,7 @@ export class LoginSteps {
     expect(await this.ctx.forgotPasswordPage.isLoaded()).toBe(true);
   }
 
-  async goToRegistrationFromSignIn() {
+  async goToRegistrationFromSignInAndCheckRedirection() {
     await this.ctx.loginPage.goToRegistrationFromSignIn();
     expect(await this.ctx.registrationPage.isLoaded()).toBeTruthy();
   }
