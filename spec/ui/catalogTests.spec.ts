@@ -3,14 +3,14 @@ import {
     ItemCategories,
     CATEGORY_DATA,
 } from "../../src/constants/ItemCategories";
-import {PageWithItemsSteps} from "../../src/steps/PageWithItemsSteps";
+import {CatalogSteps} from "../../src/steps/catalogSteps";
 import {DropdownItems, priceRanges} from "../../src/constants/common.const";
 
 test.describe("Page with items flow tests", () => {
-    let steps: PageWithItemsSteps;
+    let steps: CatalogSteps;
 
     test.beforeEach(async ({app}) => {
-        steps = new PageWithItemsSteps(app);
+        steps = new CatalogSteps(app);
     });
 
     test("Open page with items and check loading and title", async () => {

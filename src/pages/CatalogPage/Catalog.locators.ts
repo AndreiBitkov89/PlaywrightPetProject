@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
-export class PageWithItemsLocators {
+export class CatalogLocators {
   readonly title: Locator;
   readonly sidebar: Locator;
   readonly result: Locator;

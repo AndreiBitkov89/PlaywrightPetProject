@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from "@playwright/test";
-import { PageWithItemsLocators } from "./PageWithItems.locators";
+import { CatalogLocators } from "./Catalog.locators";
 import { BasePage } from "../BasePage";
 import { ProductCard } from "../../commonPageElements/ProductCard/ProductCard";
 import { SortingDropdown } from "../../commonPageElements/SortingDropdown/SortingDropdown";
@@ -7,14 +7,14 @@ import { DropdownItems } from "../../constants/common.const";
 import { SortPrice } from "../../helpers/SortPrice";
 import { PriceRange } from "../../interfaces/testData";
 
-export class PageWithItems extends BasePage {
-  readonly el: PageWithItemsLocators;
+export class CatalogPage extends BasePage {
+  readonly el: CatalogLocators;
   private sort: SortingDropdown;
   private sp = new SortPrice();
 
   constructor(page: Page) {
     super(page);
-    this.el = new PageWithItemsLocators(page);
+    this.el = new CatalogLocators(page);
     this.sort = new SortingDropdown(page);
   }
 

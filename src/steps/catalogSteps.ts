@@ -8,7 +8,7 @@ import {
 } from "../constants/ItemCategories";
 import { PriceRange } from "../interfaces/testData";
 
-export class PageWithItemsSteps {
+export class CatalogSteps {
   constructor(private ctx: AppContext) {}
 
   async openPage(category: ItemCategories): Promise<this> {

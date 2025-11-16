@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage/LoginPage";
 import { HomePage } from "../pages/HomePage/HomePage";
 import { ForgotPasswordPage } from "../pages/ForgotPasswordPage/ForgotPasswordPage";
-import { PageWithItems } from "../pages/PageWithItems/PageWithItems";
+import { CatalogPage } from "../pages/CatalogPage/CatalogPage";
 import { MyFavorites } from "../pages/MyFavoritesPage/MyFavoritesPage";
 import { SidebarFilterBy } from "../commonPageElements/SidebarFilter/SidebarFilterBy";
 import { ItemPage } from "../pages/ItemPage/ItemPage";
@@ -16,7 +16,7 @@ export class AppContext {
   public forgotPasswordPage: ForgotPasswordPage;
   public userNavigationSection: UserNavigationSection;
   public registrationPage: RegistrationPage;
-  public pageWithItems: PageWithItems;
+  public pageWithItems: CatalogPage;
   public myFavorites: MyFavorites;
   public sidebarFilter: SidebarFilterBy;
   public itemPage: ItemPage;
@@ -28,7 +28,7 @@ export class AppContext {
     this.forgotPasswordPage = new ForgotPasswordPage(page);
     this.userNavigationSection = new UserNavigationSection(page);
     this.registrationPage = new RegistrationPage(page);
-    this.pageWithItems = new PageWithItems(page);
+    this.pageWithItems = new CatalogPage(page);
     this.myFavorites = new MyFavorites(page);
     this.sidebarFilter = new SidebarFilterBy(page);
     this.itemPage = new ItemPage(page);

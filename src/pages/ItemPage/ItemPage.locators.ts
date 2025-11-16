@@ -12,6 +12,7 @@ export class ItemPageLocators {
     readonly incrementQuantity: Locator;
     readonly decrementQuantity: Locator;
     readonly quantityInput: Locator;
+    readonly sizeError: Locator;
 
     constructor(public readonly page: Page) {
         this.productTitle = page.getByTestId("product-name");
@@ -27,5 +28,6 @@ export class ItemPageLocators {
         this.incrementQuantity = page.getByTestId('increment-btn');
         this.decrementQuantity = page.getByTestId("decrement-btn");
         this.quantityInput = page.getByTestId("quantity-input");
+        this.sizeError = page.locator(".product-options-size-error")
     }
 }

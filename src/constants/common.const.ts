@@ -30,6 +30,10 @@ export enum LoginErrors {
   LOGIN_ERROR = "Please enter a valid email or mobile number and password",
 }
 
+export enum ItemPageErrors {
+    SIZE_NOT_CHOSEN = "Please select a size"
+}
+
 export enum Store {
   AE = "American",
   AERIE = "Aerie",
