@@ -24,4 +24,8 @@ export class BasePage {
   async isLoaded(selector: string): Promise<boolean> {
     return await this.page.locator(selector).isVisible();
   }
+
+  get returnPage(){
+      return this.page;
+  }
 }

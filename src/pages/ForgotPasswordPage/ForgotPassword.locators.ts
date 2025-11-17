@@ -5,7 +5,7 @@ export class ForgotPasswordLocators {
   readonly cancelButton: Locator;
 
   constructor(public readonly page: Page) {
-    this.sendEmailButton = page.locator("//*[text() = 'Send reset link']");
-    this.cancelButton = page.locator("//*[text() = 'Cancel']");
+    this.sendEmailButton = page.getByText("Send reset link");
+    this.cancelButton = page.getByText("Cancel");
   }
 }

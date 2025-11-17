@@ -13,7 +13,6 @@ export class ForgotPasswordPage extends BasePage {
   async isLoaded(): Promise<boolean> {
     await this.el.cancelButton.waitFor({ state: "visible", timeout: 4000 });
     await this.el.sendEmailButton.waitFor({ state: "visible", timeout: 4000 });
-
     return this.el.cancelButton.isVisible();
   }
 }

@@ -12,7 +12,6 @@ export class HomePage extends BasePage {
 
   async goto(): Promise<HomePage> {
     await this.page.goto("/");
-
     return this;
   }
 

@@ -14,14 +14,14 @@ export class LoginPageLocators {
     this.login = page.locator("*[type='phoneOrEmail']");
     this.password = page.locator("*[type='password']");
     this.submitLogin = page.locator("button.Form__submitButton");
-    this.createAccountLink = page.locator(
-      "[data-testid='create-account-link']",
+    this.createAccountLink = page.getByTestId(
+      "create-account-link",
     );
     this.errorGeneralMessage = page.locator(".InfoMessage__title");
-    this.errorLogin = page.locator(
-      "[data-testid='input-message-phoneOrEmail']",
+    this.errorLogin = page.getByTestId(
+      "input-message-phoneOrEmail",
     );
-    this.errorPassword = page.locator("[data-testid='input-message-password']");
-    this.forgotPassLink = page.locator("[data-testid='forgot-password-link']");
+    this.errorPassword = page.getByTestId("input-message-password");
+    this.forgotPassLink = page.getByTestId("forgot-password-link");
   }
 }
