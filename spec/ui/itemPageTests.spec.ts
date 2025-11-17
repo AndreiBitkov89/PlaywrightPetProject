@@ -3,7 +3,7 @@ import {
     CATEGORY_DATA,
     ItemCategories,
 } from "../../src/constants/ItemCategories";
-import {CatalogSteps} from "../../src/steps/catalogSteps";
+import {CatalogSteps} from "../../src/steps/CatalogSteps";
 import {ItemSteps} from "../../src/steps/ItemSteps";
 import {Products} from "../../src/constants/Products";
 import {expect} from "@playwright/test";
@@ -54,7 +54,7 @@ test.describe("Page with items flow tests", () => {
     });
 
     test("Add item to cart and assert it in mini cart", async () => {
-        await itemSteps.gotItemPageWithUrl(Products.stretchCurvy);
+        await itemSteps.gotItemPageWithUrl(Products.crewNeckSweater);
         await itemSteps.chooseSizeByIndex(0);
         await itemSteps.addItemToCard();
         await itemSteps.assertItemAddedInMiniCart();

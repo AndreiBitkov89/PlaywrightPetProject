@@ -64,7 +64,7 @@ export class ItemPage extends BasePage {
         return this.el.decrementQuantity;
     }
 
-    public get geAddToCart(): Locator {
+    public get getAddToCart(): Locator {
         return this.el.addToCart;
     }
 

@@ -12,9 +12,9 @@ export class ItemSteps {
     }
 
     async openItemPageWithTitleAndPriceAssert(index: number) {
-        const originalPrice = await this.ctx.pageWithItems.getOriginalPrice(index);
-        const title = await this.ctx.pageWithItems.getItemName(index);
-        await this.ctx.pageWithItems.goToItem(index);
+        const originalPrice = await this.ctx.catalogPage.getOriginalPrice(index);
+        const title = await this.ctx.catalogPage.getItemName(index);
+        await this.ctx.catalogPage.goToItem(index);
         await this.ctx.itemPage.isLoaded();
         expect(await this.ctx.itemPage.getOriginalPrice()).toEqual(originalPrice);
         expect(await this.ctx.itemPage.getItemTitle()).toEqual(title);
@@ -28,12 +28,11 @@ export class ItemSteps {
         let buttonText = await this.ctx.itemPage.addToCartText();
         expect(buttonText).toContain(buttonTitles.chooseSize);
         await this.ctx.itemPage.getSizeButton(index).click();
-        buttonText = await this.ctx.itemPage.addToCartText();
-        expect(buttonText).toContain(buttonTitles.add);
+        await expect(this.ctx.itemPage.getAddToCart).toHaveText(buttonTitles.add);
     }
 
     async addItemToCard() {
-        await this.ctx.itemPage.geAddToCart.click();
+        await this.ctx.itemPage.getAddToCart.click();
     }
 
     async getSizeErrorText() {

@@ -14,9 +14,9 @@ export class CatalogLocators {
 
   constructor(public readonly page: Page) {
     this.title = page.locator("h1 .HtmlText__primary");
-    this.sidebar = page.locator("[data-testid='sidebar']");
-    this.result = page.locator("[data-testid='resultsTablet']");
-    this.items = page.locator("[data-testid='listingProductGridTablet']");
+    this.sidebar = page.getByTestId('sidebar');
+    this.result = page.getByTestId('resultsTablet');
+    this.items = page.getByTestId('listingProductGridTablet');
     this.itemCounter = page.locator(".ResultsSummary__resultsSummary");
     this.sortBy = page.locator("button[aria-label='Sort By']");
     this.cards = page.locator("div[data-testid^='product-card-']");
@@ -27,15 +27,4 @@ export class CatalogLocators {
     this.emptyListSearch = page.locator(".ExpandableSearchInput__inputWrapper");
   }
 
-  cardByIndex = (i: number) => this.cards.nth(i);
-  cardByName = (name: string) =>
-    this.page
-      .locator(
-        "div[data-testid^='product-card-'] [data-testid='product-name']",
-        { hasText: name },
-      )
-      .first();
-
-  sortOptionByText = (text: string) =>
-    this.page.getByRole("menuitem", { name: new RegExp(`^${text}$`, "i") });
 }

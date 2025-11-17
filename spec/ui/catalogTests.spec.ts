@@ -3,7 +3,7 @@ import {
     ItemCategories,
     CATEGORY_DATA,
 } from "../../src/constants/ItemCategories";
-import {CatalogSteps} from "../../src/steps/catalogSteps";
+import {CatalogSteps} from "../../src/steps/CatalogSteps";
 import {DropdownItems, priceRanges} from "../../src/constants/common.const";
 
 test.describe("Page with items flow tests", () => {
