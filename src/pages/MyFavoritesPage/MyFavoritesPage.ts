@@ -16,6 +16,7 @@ export class MyFavorites extends BasePage {
     }
 
     async isLoaded(): Promise<boolean> {
+        await this.closePopupsIfExists();
         return await this.el.title.isVisible();
     }
 

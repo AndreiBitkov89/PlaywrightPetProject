@@ -10,8 +10,10 @@ import {SidebarFilterBy} from "../commonPageElements/SidebarFilter/SidebarFilter
 import {ItemPage} from "../pages/ItemPage/ItemPage";
 import {MiniCart} from "../commonPageElements/MiniCart/MiniCart";
 import {SortingDropdown} from "../commonPageElements/SortingDropdown/SortingDropdown";
+import {BasePage} from "../pages/BasePage";
 
 export class AppContext {
+    public basePage: BasePage;
     public loginPage: LoginPage;
     public homePage: HomePage;
     public forgotPasswordPage: ForgotPasswordPage;
@@ -22,7 +24,7 @@ export class AppContext {
     public sidebarFilter: SidebarFilterBy;
     public itemPage: ItemPage;
     public miniCart: MiniCart;
-    public sortingDropdown: SortingDropdown
+    public sortingDropdown: SortingDropdown;
 
     constructor(page: Page) {
         this.loginPage = new LoginPage(page);
@@ -36,5 +38,6 @@ export class AppContext {
         this.itemPage = new ItemPage(page);
         this.miniCart = new MiniCart(page);
         this.sortingDropdown = new SortingDropdown(page);
+        this.basePage = new BasePage(page);
     }
 }

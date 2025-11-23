@@ -1,31 +1,31 @@
-import { Page } from "@playwright/test";
+import {Locator, Page} from "@playwright/test";
+import {tryCloseIfVisible} from "../helpers/tryCloseIfVisible";
 
 export class BasePage {
-  constructor(public page: Page) {}
+    constructor(public page: Page) {
+    }
 
-  async closePopupsIfExists(): Promise<void> {
-    const subscribeDialogClose = this.page.locator(
-      "button[aria-label='Close dialog']",
-    );
-    const cookieBannerClose = this.page.locator(
-      "#onetrust-close-btn-container .onetrust-close-btn-handler",
-    );
-    try {
-      await subscribeDialogClose.waitFor({ state: "visible", timeout: 1000 });
-      await subscribeDialogClose.click();
-    } catch {}
+    async closePopupsIfExists(): Promise<void> {
+        const subscribeDialogClose = this.page.locator("button[aria-label='Close dialog']");
+        const cookieClose = this.page.locator(
+            '#onetrust-close-btn-container .onetrust-close-btn-handler',
+        );
+        await Promise.allSettled([
+            tryCloseIfVisible(subscribeDialogClose),
+            tryCloseIfVisible(cookieClose),
+        ]);
+    }
 
-    try {
-      await cookieBannerClose.waitFor({ state: "visible", timeout: 1000 });
-      await cookieBannerClose.click();
-    } catch {}
-  }
+    async safeClick(locator: Locator): Promise<void> {
+        try {
+            await locator.click();
+        } catch {
+            await this.closePopupsIfExists();
+            await locator.click();
+        }
+    }
 
-  async isLoaded(selector: string): Promise<boolean> {
-    return await this.page.locator(selector).isVisible();
-  }
-
-  get returnPage(){
-      return this.page;
-  }
+    get returnPage() {
+        return this.page;
+    }
 }

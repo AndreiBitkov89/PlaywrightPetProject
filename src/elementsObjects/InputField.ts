@@ -30,6 +30,6 @@ export class InputField {
   }
 
   async isVisible(): Promise<boolean> {
-    return await this.inputSelector.isVisible({ timeout: 5000 });
+    return await this.inputSelector.isVisible({ timeout: 7000 });
   }
 }

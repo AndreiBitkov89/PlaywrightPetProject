@@ -2,7 +2,6 @@ import {BasePage} from "../BasePage";
 import {Locator, Page} from "@playwright/test";
 import {ItemPageLocators} from "./ItemPage.locators";
 import {SortPrice} from "../../helpers/SortPrice";
-import {expect} from "@playwright/test";
 
 export class ItemPage extends BasePage {
     readonly sp = new SortPrice();
@@ -19,6 +18,7 @@ export class ItemPage extends BasePage {
 
     async isLoaded(): Promise<boolean> {
         await this.el.sizeBlock.waitFor({state: "visible"});
+        await this.closePopupsIfExists();
         return (
             (await this.el.sizeBlock.isVisible()) &&
             (await this.el.colorOptions.isVisible()) &&
@@ -73,6 +73,6 @@ export class ItemPage extends BasePage {
     }
 
     public getSizeButton(index: number) {
-       return this.el.sizeItem.nth(index);
+        return this.el.sizeItem.nth(index);
     }
 }

@@ -20,8 +20,16 @@ export class LoginPage extends BasePage {
         await this.page.goto(urls.login);
     }
 
+    async isLoaded(): Promise<boolean> {
+        await this.closePopupsIfExists();
+        return (
+            (await this.loginField.isVisible()) &&
+            (await this.passwordField.isVisible())
+        );
+    }
+
     get getSubmitButton() {
-        return this.el.submitLogin
+        return this.el.submitLogin;
     }
 
     async fillLogin(email: string | null): Promise<void> {
@@ -54,14 +62,14 @@ export class LoginPage extends BasePage {
     }
 
     get getErrorLogin(): Locator {
-        return this.el.errorLogin
+        return this.el.errorLogin;
     }
 
     get getErrorPassword(): Locator {
-        return this.el.errorPassword
+        return this.el.errorPassword;
     }
 
     get getErrorGeneralMessage(): Locator {
-        return this.el.errorGeneralMessage
+        return this.el.errorGeneralMessage;
     }
 }

@@ -28,12 +28,12 @@ export class RegistrationPage extends BasePage {
     }
 
     async isLoaded(): Promise<boolean> {
+        await this.closePopupsIfExists();
         return (
             (await this.nameField.isVisible()) &&
-            (await this.el.submitButton.isVisible({timeout: 5000}))
+            (await this.el.submitButton.isVisible({timeout: 7000}))
         );
     }
-
 
     async fillName(name: string | null): Promise<void> {
         if (typeof name === "string") {
@@ -65,7 +65,6 @@ export class RegistrationPage extends BasePage {
         }
     }
 
-
     async checkTheTerms(): Promise<RegistrationPage> {
         await this.el.terms.check();
         return this;
@@ -77,7 +76,7 @@ export class RegistrationPage extends BasePage {
     }
 
     async submit(): Promise<RegistrationPage> {
-        await this.el.submitButton.click();
+        await this.safeClick(this.el.submitButton)
         return this;
     }
 
@@ -87,7 +86,7 @@ export class RegistrationPage extends BasePage {
 
     async isRegistrationSuccessful(): Promise<boolean> {
         try {
-            await this.el.name.waitFor({state: "hidden", timeout: 5000});
+            await this.el.name.waitFor({state: "hidden", timeout: 7000});
             return true;
         } catch {
             return false;
@@ -95,23 +94,23 @@ export class RegistrationPage extends BasePage {
     }
 
     get getErrorEmail() {
-        return this.el.errorEmail
+        return this.el.errorEmail;
     }
 
     get getErrorPassword() {
-        return this.el.errorPassword
+        return this.el.errorPassword;
     }
 
     get getErrorSurname() {
-        return this.el.errorSurname
+        return this.el.errorSurname;
     }
 
     get getErrorName() {
-        return this.el.errorName
+        return this.el.errorName;
     }
 
     get getErrorConfirmPassword() {
-        return this.el.errorConfirmPassword
+        return this.el.errorConfirmPassword;
     }
 
     async isValidationFailed(field: ErrorFieldRegistration): Promise<boolean> {

@@ -31,7 +31,7 @@ export enum LoginErrors {
 }
 
 export enum ItemPageErrors {
-    SIZE_NOT_CHOSEN = "Please select a size"
+  SIZE_NOT_CHOSEN = "Please select a size",
 }
 
 export enum Store {
