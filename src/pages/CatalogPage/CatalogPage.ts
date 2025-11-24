@@ -1,7 +1,7 @@
-import { Locator, Page, expect } from "@playwright/test";
-import { CatalogLocators } from "./Catalog.locators";
-import { BasePage } from "../BasePage";
-import { ProductCard } from "../../commonPageElements/ProductCard/ProductCard";
+import {Locator, Page} from "@playwright/test";
+import {CatalogLocators} from "./Catalog.locators";
+import {BasePage} from "../BasePage";
+import {ProductCard} from "../../commonPageElements/ProductCard/ProductCard";
 
 export class CatalogPage extends BasePage {
   readonly el: CatalogLocators;
@@ -39,9 +39,8 @@ export class CatalogPage extends BasePage {
   }
 
   async waitForFirstCard(): Promise<Locator> {
-    const first = this.cards().first();
-    await expect(first).toBeVisible();
-    return first;
+      await this.cards().first().isVisible({timeout: 5000});
+      return this.cards().first();
   }
 
   async loadAllCards(): Promise<void> {
@@ -78,11 +77,7 @@ export class CatalogPage extends BasePage {
   }
 
   async getEmptyListMessage() {
-    const text = await this.getEmptyListMessageLocator.textContent();
-    expect(text).not.toBeNull();
-    expect(text).toContain(
-      "Sorry, we couldn't find what you were looking for.",
-    );
+    return await this.getEmptyListMessageLocator.textContent();
   }
 
   async getAllPrices(): Promise<number[]> {

@@ -1,11 +1,12 @@
 import { User } from "../valueObjects/NewUser";
-import { test, expect, Locator } from "@playwright/test";
+import { test, expect } from "../fixtures/fixture";
 import { AppContext } from "./AppContext";
 import {
   RegistrationErrors,
   ErrorFieldRegistration,
   Store,
 } from "../constants/common.const";
+import {Locator} from "@playwright/test";
 
 export class RegistrationSteps {
   constructor(private ctx: AppContext) {}

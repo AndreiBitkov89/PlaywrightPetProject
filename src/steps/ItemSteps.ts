@@ -1,4 +1,4 @@
-import { expect } from "@playwright/test";
+import { expect } from "../fixtures/fixture";
 import { AppContext } from "./AppContext";
 import { buttonTitles } from "../constants/ItemPageConstants";
 import { Products } from "../constants/Products";

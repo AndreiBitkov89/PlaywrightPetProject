@@ -1,8 +1,9 @@
-import { test, expect, Locator } from "@playwright/test";
+import { test, expect } from "../fixtures/fixture";
 import { LoginErrors } from "../constants/common.const";
 import { AppContext } from "./AppContext";
 import { ErrorFieldLogin } from "../constants/common.const";
 import { urls } from "../constants/urlStorage";
+import {Locator} from "@playwright/test";
 
 export class LoginSteps {
   constructor(private ctx: AppContext) {}
